@@ -4,7 +4,7 @@ class LibrarySpec extends FlatSpec with Matchers {
 
   val bk1 = Book("Title1", "Author1", Some(Borrower("Borrower1", 1)))
   val bk2 = Book("Title2", "Author2", None)
-  val bk3 = Book("Title2", "Author2", Some(Borrower("Borrower2", 2)))
+  val bk3 = Book("Title3", "Author3", Some(Borrower("Borrower3", 3)))
   val br1 = Borrower("Borrower1", 1)
   val br2 = Borrower("Borrower2", 2)
   val br3 = Borrower("Borrower3", 3)
