@@ -25,6 +25,6 @@ object Book {
 }
 
 // :paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/Book.scala
-// :paste /Users/eatobin/scala_projects/total-beginer-scala/src/main/scala/Book.scala
+// :paste /Users/eatobin/scala_projects/total-beginner-scala/src/main/scala/Book.scala
 // val bk1 = Book("Title1", "Author1", Some(Borrower("Borrower1", 1)))
 // val bk2 = Book("Title2", "Author2", None)
