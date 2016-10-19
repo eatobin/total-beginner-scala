@@ -16,6 +16,14 @@ object Library {
       None
   }
 
+  def removeBook(bk: Book, bks: List[Book]): Option[List[Book]] = {
+    val coll = bks.filter(_ == bk)
+    if (coll.contains(bk))
+      Some(bks.filter(_ != bk))
+    else
+      None
+  }
+
 }
 
 //val br1 = Borrower("Borrower1", 1)
