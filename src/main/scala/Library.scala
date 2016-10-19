@@ -8,6 +8,14 @@ object Library {
       None
   }
 
+  def addBook(bk: Book, bks: List[Book]): Option[List[Book]] = {
+    val coll = bks.filter(_ == bk)
+    if (coll.isEmpty)
+      Some(bks :+ bk)
+    else
+      None
+  }
+
 }
 
 //val br1 = Borrower("Borrower1", 1)
