@@ -24,6 +24,11 @@ object Library {
       None
   }
 
+  def findBook(t: String, bks: List[Book]): Option[Book] = {
+    val coll = bks.filter(bk => Book.getTitle(bk) == t)
+    coll.headOption
+  }
+
 }
 
 //val br1 = Borrower("Borrower1", 1)
