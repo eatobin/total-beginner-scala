@@ -24,6 +24,11 @@ class LibrarySpec extends FlatSpec with Matchers {
     Library.addBook(bk2, bks1) should be(None)
   }
 
+  it should "remove a Book correctly" in {
+    Library.removeBook(bk3, bks2) should be(Some(bks1))
+    Library.removeBook(bk3, bks1) should be(None)
+  }
+
   //  it should "set a new Borrower" in {
   //    Book.setBorrower(Some(br2), bk2) should be(bk3)
   //  }
