@@ -47,6 +47,16 @@ class LibrarySpec extends FlatSpec with Matchers {
     Library.getBooksForBorrower(br3, bks3) should be(List(bk3, bk4))
   }
 
+  it should "check out a Book correctly" in {
+    Library.checkOut("Borrower2", "Title1", brs1, bks1) should be(bks1)
+    Library.checkOut("Borrower2", "NoTitle", brs1, bks1) should be(bks1)
+    Library.checkOut("NoName", "Title1", brs1, bks1) should be(bks1)
+    Library.checkOut("Borrower1", "Title2", brs1, bks1) should be(bks1)
+    Library.checkOut("Borrower2", "Title2", brs1, bks1) should
+      be(List(Book("Title1", "Author1", Some(Borrower("Borrower1", 1))),
+        Book("Title2", "Author2", Some(Borrower("Borrower2", 2)))))
+  }
+
   //  it should "set a new Borrower" in {
   //    Book.setBorrower(Some(br2), bk2) should be(bk3)
   //  }

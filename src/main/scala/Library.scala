@@ -38,19 +38,19 @@ object Library {
     bks.filter(bk => Book.getBorrower(bk).contains(br))
 
   def checkOut(n: String, t: String, brs: List[Borrower], bks: List[Book]): List[Book] = {
-    if (mbk.isDefined && mbr.isDefined && notMaxedOut && bookNotOut)
-      Library.addBook(newBook, fewerBooks).get
-    else
-      bks
-
     lazy val mbk = Library.findBook(t, bks)
     lazy val mbr = Library.findBorrower(n, brs)
-    val booksOut = Library.getBooksForBorrower(mbr.get, bks).length
-    val maxBooksAllowed = Borrower.getMaxBooks(mbr.get)
+    lazy val booksOut = Library.getBooksForBorrower(mbr.get, bks).length
+    lazy val maxBooksAllowed = Borrower.getMaxBooks(mbr.get)
     lazy val notMaxedOut = booksOut < maxBooksAllowed
     lazy val bookNotOut = Book.getBorrower(mbk.get).isEmpty
     lazy val newBook = Book.setBorrower(mbr, mbk.get)
     lazy val fewerBooks = Library.removeBook(mbk.get, bks).get
+
+    if (mbk.isDefined && mbr.isDefined && notMaxedOut && bookNotOut)
+      Library.addBook(newBook, fewerBooks).get
+    else
+      bks
   }
 
 }
