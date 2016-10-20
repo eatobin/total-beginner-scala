@@ -34,6 +34,9 @@ object Library {
     coll.headOption
   }
 
+  def getBooksForBorrower(br: Borrower, bks: List[Book]): List[Book] =
+    bks.filter(bk => Book.getBorrower(bk).get == br)
+
 }
 
 //val br1 = Borrower("Borrower1", 1)
