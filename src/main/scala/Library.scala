@@ -35,7 +35,7 @@ object Library {
   }
 
   def getBooksForBorrower(br: Borrower, bks: List[Book]): List[Book] =
-    bks.filter(bk => Book.getBorrower(bk).get == br)
+    bks.filter(bk => Book.getBorrower(bk).contains(br))
 
 }
 

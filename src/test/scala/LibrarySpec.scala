@@ -5,6 +5,7 @@ class LibrarySpec extends FlatSpec with Matchers {
   val bk1 = Book("Title1", "Author1", Some(Borrower("Borrower1", 1)))
   val bk2 = Book("Title2", "Author2", None)
   val bk3 = Book("Title3", "Author3", Some(Borrower("Borrower3", 3)))
+  val bk4 = Book("Title4", "Author4", Some(Borrower("Borrower3", 3)))
   val br1 = Borrower("Borrower1", 1)
   val br2 = Borrower("Borrower2", 2)
   val br3 = Borrower("Borrower3", 3)
@@ -12,6 +13,7 @@ class LibrarySpec extends FlatSpec with Matchers {
   val brs2 = List(br1, br2, br3)
   val bks1 = List(bk1, bk2)
   val bks2 = List(bk1, bk2, bk3)
+  val bks3 = List(bk1, bk2, bk3, bk4)
 
 
   "A Library" should "add a Borrower correctly" in {
@@ -37,6 +39,12 @@ class LibrarySpec extends FlatSpec with Matchers {
   it should "find a Borrower correctly" in {
     Library.findBorrower("Borrower1", brs2) should be(Some(br1))
     Library.findBorrower("Borrower11", brs2) should be(None)
+  }
+
+  it should "find Books for a Borrower" in {
+    Library.getBooksForBorrower(br2, bks1) should be(List())
+    Library.getBooksForBorrower(br1, bks1) should be(List(bk1))
+    Library.getBooksForBorrower(br3, bks3) should be(List(bk3, bk4))
   }
 
   //  it should "set a new Borrower" in {
