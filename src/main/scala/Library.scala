@@ -29,6 +29,11 @@ object Library {
     coll.headOption
   }
 
+  def findBorrower(n: String, brs: List[Borrower]): Option[Borrower] = {
+    val coll = brs.filter(br => Borrower.getName(br) == n)
+    coll.headOption
+  }
+
 }
 
 //val br1 = Borrower("Borrower1", 1)
