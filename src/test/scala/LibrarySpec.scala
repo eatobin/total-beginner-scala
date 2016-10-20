@@ -34,6 +34,11 @@ class LibrarySpec extends FlatSpec with Matchers {
     Library.findBook("Title11", bks2) should be(None)
   }
 
+  it should "find a Borrower correctly" in {
+    Library.findBorrower("Borrower1", brs2) should be(Some(br1))
+    Library.findBorrower("Borrower11", brs2) should be(None)
+  }
+
   //  it should "set a new Borrower" in {
   //    Book.setBorrower(Some(br2), bk2) should be(bk3)
   //  }
