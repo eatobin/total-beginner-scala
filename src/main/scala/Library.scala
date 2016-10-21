@@ -53,6 +53,18 @@ object Library {
       bks
   }
 
+  def checkIn(t: String, bks: List[Book]): List[Book] = {
+    lazy val mbk = Library.findBook(t, bks)
+    lazy val bookOut = Book.getBorrower(mbk.get).isDefined
+    lazy val newBook = Book.setBorrower(None, mbk.get)
+    lazy val fewerBooks = Library.removeBook(mbk.get, bks).get
+
+    if (mbk.isDefined && bookOut)
+      Library.addBook(newBook, fewerBooks).get
+    else
+      bks
+  }
+
 }
 
 //val br1 = Borrower("Borrower1", 1)
