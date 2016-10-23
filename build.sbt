@@ -8,9 +8,6 @@ scalaVersion := "2.11.8"
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6" % "test"
 libraryDependencies ++= Seq(
   "org.scala-lang" % "scala-reflect" % "2.11.8",
-  "org.scala-lang.modules" % "scala-xml_2.11" % "1.0.4"
+  "org.scala-lang.modules" % "scala-xml_2.11" % "1.0.4",
+  "com.typesafe.akka" %% "akka-actor" % "2.4.11"
 )
-
-// Uncomment to use Akka
-//libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.11"
-
