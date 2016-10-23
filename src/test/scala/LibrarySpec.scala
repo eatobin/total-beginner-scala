@@ -14,6 +14,7 @@ class LibrarySpec extends FlatSpec with Matchers {
   val bks1 = List(bk1, bk2)
   val bks2 = List(bk1, bk2, bk3)
   val bks3 = List(bk1, bk2, bk3, bk4)
+  val ss = "\n--- Status Report of Test Library ---\n\nTest Library: 3 books; 3 borrowers.\n\nTitle1 by Author1; Checked out to Borrower1\nTitle2 by Author2; Available\nTitle3 by Author3; Checked out to Borrower3\n\nBorrower1 (1 books)\nBorrower2 (2 books)\nBorrower3 (3 books)\n\n--- End of Status Report ---\n"
 
 
   "A Library" should "add a Borrower correctly" in {
@@ -62,18 +63,12 @@ class LibrarySpec extends FlatSpec with Matchers {
       be(List(Book("Title2", "Author2", None), Book("Title1", "Author1", None)))
     Library.checkIn("Title2", bks1) should
       be(bks1)
+    Library.checkIn("NoTitle", bks1) should
+      be(bks1)
   }
 
-  //  it should "set a new Borrower" in {
-  //    Book.setBorrower(Some(br2), bk2) should be(bk3)
-  //  }
-  //
-  //  it should "return a string \"Title1 by Author1; Checked out to Borrower1\"" in {
-  //    Book.bookToString(bk1) should be("Title1 by Author1; Checked out to Borrower1")
-  //  }
-  //
-  //  it should "return a string \"Title2 by Author2; Available\"" in {
-  //    Book.bookToString(bk2) should be("Title2 by Author2; Available")
-  //  }
+  it should "print out a Status report" in {
+    Library.statusToString(bks2, brs2) should be(ss)
+  }
 
 }

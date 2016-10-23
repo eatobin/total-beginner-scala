@@ -65,6 +65,18 @@ object Library {
       bks
   }
 
+  def libraryToString(bks: List[Book], brs: List[Borrower]): String =
+    "Test Library: " ++
+      bks.length.toString ++ " books; " ++
+      brs.length.toString ++ " borrowers."
+
+  def statusToString(bks: List[Book], brs: List[Borrower]): String =
+    "\n--- Status Report of Test Library ---\n\n" ++
+      Library.libraryToString(bks, brs) ++ "\n\n" ++
+      bks.map(bk => Book.bookToString(bk)).mkString("\n") ++ "\n\n" ++
+      brs.map(br => Borrower.borrowerToString(br)).mkString("\n") ++ "\n\n" ++
+      "--- End of Status Report ---\n"
+
 }
 
 //val br1 = Borrower("Borrower1", 1)
@@ -72,3 +84,4 @@ object Library {
 //val brs1 = List(br1,br2)
 //val br3 = Borrower("Borrower3", 3)
 //:paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/Library.scala
+//:paste /Users/eatobin/scala_projects/total-beginner-scala/src/main/scala/Library.scala
