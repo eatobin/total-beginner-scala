@@ -3,9 +3,17 @@ object Main {
   import akka.actor.{Actor, ActorSystem, Props}
 
   class HelloActor extends Actor {
+    var s = "String!!"
+
     def receive = {
       case "hello" => println("hello back at you")
       case "this..." => println("...is great!")
+      case "and 2" =>
+        val t = 2 + 6
+        println(t)
+      case "s" =>
+        s = s ++ " 2!!"
+        println(s)
       case _ => println("huh?")
     }
   }
@@ -30,6 +38,8 @@ object Main {
     helloActor ! "buenos dias"
     helloActor ! "this..."
     helloActor ! "this"
+    helloActor ! "and 2"
+    helloActor ! "s"
     // shut down the system
     system.terminate()
   }
