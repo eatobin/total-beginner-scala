@@ -5,8 +5,7 @@ object Main {
   class HelloActor extends Actor {
     def receive = {
       case "hello" => println("hello back at you")
-      case _
-      => println("huh?")
+      case _ => println("huh?")
     }
   }
 
