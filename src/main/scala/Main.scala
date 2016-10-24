@@ -5,6 +5,7 @@ object Main {
   class HelloActor extends Actor {
     def receive = {
       case "hello" => println("hello back at you")
+      case "this..." => println("...is great!")
       case _ => println("huh?")
     }
   }
@@ -27,6 +28,8 @@ object Main {
     // send the actor two messages
     helloActor ! "hello"
     helloActor ! "buenos dias"
+    helloActor ! "this..."
+    helloActor ! "this"
     // shut down the system
     system.terminate()
   }
