@@ -1,13 +1,18 @@
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 
 class Barista extends Actor {
+  var cappuccinoCount = 0
+  var espressoCount = 0
+
   def receive = {
     case CappuccinoRequest =>
       sender ! Bill(250)
-      println("I have to prepare a cappuccino!")
+      cappuccinoCount += 1
+      println(s"I have to prepare a cappuccino #$cappuccinoCount")
     case EspressoRequest =>
       sender ! Bill(200)
-      println("Let's prepare an espresso.")
+      espressoCount += 1
+      println(s"Let's prepare an espresso #$espressoCount")
     case ClosingTime => context.system.terminate()
   }
 }
@@ -35,10 +40,11 @@ object Barista extends App {
   val system = ActorSystem("Barista")
   val barista = system.actorOf(Props[Barista], "Barista")
   val customer = system.actorOf(Props(classOf[Customer], barista), "Customer")
-  //  barista ! CappuccinoRequest
-  //  barista ! EspressoRequest
-  //  println("I ordered a cappuccino and an espresso")
+  //    barista ! CappuccinoRequest
+  //    barista ! EspressoRequest
+  //    println("I ordered a cappuccino and an espresso")
+  customer ! CaffeineWithdrawalWarning
   customer ! CaffeineWithdrawalWarning
   barista ! ClosingTime
-  system.terminate()
+  //    system.terminate()
 }
