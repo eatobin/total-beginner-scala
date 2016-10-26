@@ -52,15 +52,28 @@ object Cheat extends App {
   //  println("pre: " + pre)
   //  println("post: " + post)
   //  println("et: " + et)
+
+  //  def addLast(elem: Int) {
+  //    atomic { implicit txn =>
+  //      val p = header.prev()
+  //      val newNode = new Node(elem, p, header)
+  //      p.next() = newNode
+  //      header.prev() = newNode
+  //    }
+  //  }
+
   println(s"eric: ${eric.get + 1}")
   eric.set(2016)
   println("eric: " + eric.get)
 
-  atomic { implicit txn =>
-    println(s"karen: ${karen.get + 1}")
-    karen.set(2016)
-    println("karen: " + karen.get)
+  def printKaren(): Unit = {
+    atomic { implicit txn =>
+      println(s"karen: ${karen.get + 1}")
+      karen.set(2016)
+      println("karen: " + karen.get)
+    }
   }
 
+  printKaren()
   println(s"karen: ${karen.single.get + 10}")
 }
