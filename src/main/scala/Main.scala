@@ -58,6 +58,9 @@ object Main {
       tvBooks.transform(Library.checkIn("War And Peace", _))
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+
+      println("And... that's all...")
+      println("Thanks - bye!\n")
     }
 
   }
