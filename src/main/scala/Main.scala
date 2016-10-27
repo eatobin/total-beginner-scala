@@ -48,6 +48,11 @@ object Main {
       tvBooks.transform(Library.checkOut("JoJo", "War And Peace", tvBorrowers.get, _))
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+
+      println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A Book', borrowers)")
+      tvBooks.transform(Library.checkOut("Sue", "Not A Book", tvBorrowers.get, _))
+      println("No change to Test Library:")
+      println(Library.statusToString(tvBooks.get, tvBorrowers.get))
     }
 
   }
