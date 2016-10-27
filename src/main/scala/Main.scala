@@ -8,6 +8,7 @@ object Main {
   def main(args: Array[String]): Unit = {
 
     atomic { implicit txn =>
+
       tvBorrowers.transform(Library.addBorrower(Borrower("Jim", 3), _))
       tvBorrowers.transform(Library.addBorrower(Borrower("Sue", 3), _))
       tvBooks.transform(Library.addBook(Book("War And Peace", "Tolstoy", None), _))
