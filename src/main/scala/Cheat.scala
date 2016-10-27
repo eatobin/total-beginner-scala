@@ -74,6 +74,20 @@ object Cheat extends App {
     }
   }
 
+  def add30(i: Int): Int = i + 30
+
   printKaren()
   println(s"karen: ${karen.single.get + 10}")
+
+  atomic { implicit txn =>
+    karen.transform(i => i + 3)
+  }
+
+  println("karen1: " + karen.single.get)
+
+  atomic { implicit txn =>
+    karen.transform(add30)
+    karen.transform(i => add30(i))
+    println("karen2: " + karen.get)
+  }
 }
