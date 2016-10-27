@@ -24,6 +24,23 @@ object Main {
       println("...and check out Great Expectations to Jim")
       tvBooks.transform(Library.checkOut("Jim", "Great Expectations", tvBorrowers.get, _))
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+
+      println("Add Eric and The Cat In The Hat")
+      tvBorrowers.transform(Library.addBorrower(Borrower("Eric", 1), _))
+      tvBooks.transform(Library.addBook(Book("The Cat In The Hat", "Dr. Seuss", None), _))
+      println("Check Out Dr. Seuss to Eric")
+      tvBooks.transform(Library.checkOut("Eric", "The Cat In The Hat", tvBorrowers.get, _))
+      println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+
+      println("Now let's do some BAD stuff...")
+      println("Add a borrower that already exists (Borrower('Jim', 3))")
+      tvBorrowers.transform(Library.addBorrower(Borrower("Jim", 3), _))
+      println("No change to Test Library:")
+      println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+      println("Add a book that already exists (Book('War And Peace', 'Tolstoy', None))")
+      tvBooks.transform(Library.addBook(Book("War And Peace", "Tolstoy", None), _))
+      println("No change to Test Library:")
+      println(Library.statusToString(tvBooks.get, tvBorrowers.get))
     }
 
   }
