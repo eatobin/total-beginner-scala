@@ -1,3 +1,5 @@
+// http://danielwestheide.com/blog/2013/02/27/the-neophytes-guide-to-scala-part-14-the-actor-approach-to-concurrency.html
+
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 
 class Barista extends Actor {
