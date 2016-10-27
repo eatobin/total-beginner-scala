@@ -33,12 +33,19 @@ object Main {
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
       println("Now let's do some BAD stuff...")
+
       println("Add a borrower that already exists (Borrower('Jim', 3))")
       tvBorrowers.transform(Library.addBorrower(Borrower("Jim", 3), _))
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+
       println("Add a book that already exists (Book('War And Peace', 'Tolstoy', None))")
       tvBooks.transform(Library.addBook(Book("War And Peace", "Tolstoy", None), _))
+      println("No change to Test Library:")
+      println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+
+      println("Check out a valid book to an invalid person (checkOut('JoJo', 'War And Peace', borrowers))")
+      tvBooks.transform(Library.checkOut("JoJo", "War And Peace", tvBorrowers.get, _))
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
     }
