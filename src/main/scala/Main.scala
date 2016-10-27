@@ -49,8 +49,13 @@ object Main {
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
-      println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A Book', borrowers)")
+      println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A Book', borrowers))")
       tvBooks.transform(Library.checkOut("Sue", "Not A Book", tvBorrowers.get, _))
+      println("No change to Test Library:")
+      println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+
+      println("Last - check in a book not checked out (checkIn('War And Peace'))")
+      tvBooks.transform(Library.checkIn("War And Peace", _))
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
     }
