@@ -11,7 +11,7 @@ object Borrower {
   def setMaxBooks(m: Int, br: Borrower): Borrower = br.copy(maxBooks = m)
 
   def borrowerToString(br: Borrower): String =
-    getName(br) ++ " (" ++ getMaxBooks(br).toString ++ " books)"
+    getName(br) + " (" + getMaxBooks(br).toString + " books)"
 
 }
 

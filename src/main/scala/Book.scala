@@ -13,14 +13,14 @@ object Book {
   def availableString(bk: Book): String = {
     Book.getBorrower(bk) match {
       case None => "Available"
-      case Some(br) => "Checked out to " ++ Borrower.getName(br)
+      case Some(br) => "Checked out to " + Borrower.getName(br)
     }
   }
 
   def bookToString(bk: Book): String =
-    Book.getTitle(bk) ++
-      " by " ++ Book.getAuthor(bk) ++
-      "; " ++ Book.availableString(bk)
+    Book.getTitle(bk) +
+      " by " + Book.getAuthor(bk) +
+      "; " + Book.availableString(bk)
 
 }
 
