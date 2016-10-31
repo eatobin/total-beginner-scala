@@ -17,4 +17,5 @@ class BorrowerSpec extends FlatSpec with Matchers {
   it should "return a string \"Borrower1 (1 books)\"" in {
     Borrower.borrowerToString(br1) should be("Borrower1 (1 books)")
   }
+
 }
