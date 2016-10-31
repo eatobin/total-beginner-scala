@@ -1,24 +1,21 @@
 object Library {
 
   def addBorrower(br: Borrower, brs: List[Borrower]): List[Borrower] = {
-    val coll = brs.filter(_ == br)
-    if (coll.isEmpty)
-      br :: brs
-    else
+    if (brs.contains(br))
       brs
+    else
+      br :: brs
   }
 
   def addBook(bk: Book, bks: List[Book]): List[Book] = {
-    val coll = bks.filter(_ == bk)
-    if (coll.isEmpty)
-      bk :: bks
-    else
+    if (bks.contains(bk))
       bks
+    else
+      bk :: bks
   }
 
   def removeBook(bk: Book, bks: List[Book]): List[Book] = {
-    val coll = bks.filter(_ == bk)
-    if (coll.contains(bk))
+    if (bks.contains(bk))
       bks.filter(_ != bk)
     else
       bks
