@@ -33,7 +33,7 @@ object Main {
       tvBooks.transform(Library.checkOut("Eric", "The Cat In The Hat", tvBorrowers.get, _))
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
-      println("Now let's do some BAD stuff...")
+      println("Now let's do some BAD stuff...\n")
 
       println("Add a borrower that already exists (Borrower('Jim', 3))")
       tvBorrowers.transform(Library.addBorrower(Borrower("Jim", 3), _))
