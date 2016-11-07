@@ -2,18 +2,22 @@ import org.scalatest._
 
 class LibrarySpec extends FlatSpec with Matchers {
 
-  val bk1 = Book("Title1", "Author1", Some(Borrower("Borrower1", 1)))
-  val bk2 = Book("Title2", "Author2", None)
-  val bk3 = Book("Title3", "Author3", Some(Borrower("Borrower3", 3)))
-  val bk4 = Book("Title4", "Author4", Some(Borrower("Borrower3", 3)))
   val br1 = Borrower("Borrower1", 1)
   val br2 = Borrower("Borrower2", 2)
   val br3 = Borrower("Borrower3", 3)
+
   val brs1 = List(br1, br2)
   val brs2 = List(br3, br1, br2)
+
+  val bk1 = Book("Title1", "Author1", Some(br1))
+  val bk2 = Book("Title2", "Author2", None)
+  val bk3 = Book("Title3", "Author3", Some(br3))
+  val bk4 = Book("Title4", "Author4", Some(Borrower("Borrower3", 3)))
+
   val bks1 = List(bk1, bk2)
   val bks2 = List(bk3, bk1, bk2)
   val bks3 = List(bk1, bk2, bk3, bk4)
+
   val ss = "\n--- Status Report of Test Library ---\n\nTest Library: 3 books; 3 borrowers.\n\nTitle3 by Author3; Checked out to Borrower3\nTitle1 by Author1; Checked out to Borrower1\nTitle2 by Author2; Available\n\nBorrower3 (3 books)\nBorrower1 (1 books)\nBorrower2 (2 books)\n\n--- End of Status Report ---\n"
 
 
@@ -54,13 +58,12 @@ class LibrarySpec extends FlatSpec with Matchers {
     Library.checkOut("NoName", "Title1", brs1, bks1) should be(bks1)
     Library.checkOut("Borrower1", "Title2", brs1, bks1) should be(bks1)
     Library.checkOut("Borrower2", "Title2", brs1, bks1) should
-      be(List(Book("Title2", "Author2", Some(Borrower("Borrower2", 2))),
-        Book("Title1", "Author1", Some(Borrower("Borrower1", 1)))))
+      be(List(Book("Title2", "Author2", Some(Borrower("Borrower2", 2))), bk1))
   }
 
   it should "check in a Book correctly" in {
     Library.checkIn("Title1", bks1) should
-      be(List(Book("Title1", "Author1", None), Book("Title2", "Author2", None)))
+      be(List(Book("Title1", "Author1", None), bk2))
     Library.checkIn("Title2", bks1) should
       be(bks1)
     Library.checkIn("NoTitle", bks1) should
