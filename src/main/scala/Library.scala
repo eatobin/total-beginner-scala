@@ -34,32 +34,37 @@ object Library {
   def getBooksForBorrower(br: Borrower, bks: List[Book]): List[Book] =
     bks.filter(bk => Book.getBorrower(bk).contains(br))
 
-  def checkOut(n: String, t: String, brs: List[Borrower], bks: List[Book]): List[Book] = {
-    lazy val mbk = Library.findBook(t, bks)
-    lazy val mbr = Library.findBorrower(n, brs)
-    lazy val booksOut = Library.getBooksForBorrower(mbr.get, bks).length
-    lazy val maxBooksAllowed = Borrower.getMaxBooks(mbr.get)
-    lazy val notMaxedOut = booksOut < maxBooksAllowed
-    lazy val bookNotOut = Book.getBorrower(mbk.get).isEmpty
-    lazy val newBook = Book.setBorrower(mbr, mbk.get)
-    lazy val fewerBooks = Library.removeBook(mbk.get, bks)
+  def numBooksOut(br: Borrower, bks: List[Book]): Int =
+    getBooksForBorrower(br, bks).length
 
-    if (mbk.isDefined && mbr.isDefined && notMaxedOut && bookNotOut)
-      Library.addBook(newBook, fewerBooks)
-    else
-      bks
+  def notMaxedOut(br: Borrower, bks: List[Book]): Boolean =
+    numBooksOut(br, bks) < Borrower.getMaxBooks(br)
+
+  def bookNotOut(bk: Book): Boolean =
+    Book.getBorrower(bk).isEmpty
+
+  def bookOut(bk: Book): Boolean =
+    Book.getBorrower(bk).isDefined
+
+  def checkOut(n: String, t: String, brs: List[Borrower], bks: List[Book]): List[Book] = {
+    val mbk = findBook(t, bks)
+    val mbr = findBorrower(n, brs)
+
+    if (mbk.isDefined && mbr.isDefined && notMaxedOut(mbr.get, bks) && bookNotOut(mbk.get)) {
+      val newBook = Book.setBorrower(mbr, mbk.get)
+      val fewerBooks = removeBook(mbk.get, bks)
+      addBook(newBook, fewerBooks)
+    } else bks
   }
 
   def checkIn(t: String, bks: List[Book]): List[Book] = {
-    lazy val mbk = Library.findBook(t, bks)
-    lazy val bookOut = Book.getBorrower(mbk.get).isDefined
-    lazy val newBook = Book.setBorrower(None, mbk.get)
-    lazy val fewerBooks = Library.removeBook(mbk.get, bks)
+    val mbk = findBook(t, bks)
 
-    if (mbk.isDefined && bookOut)
-      Library.addBook(newBook, fewerBooks)
-    else
-      bks
+    if (mbk.isDefined && bookOut(mbk.get)) {
+      val newBook = Book.setBorrower(None, mbk.get)
+      val fewerBooks = removeBook(mbk.get, bks)
+      addBook(newBook, fewerBooks)
+    } else bks
   }
 
   def libraryToString(bks: List[Book], brs: List[Borrower]): String =
@@ -69,7 +74,7 @@ object Library {
 
   def statusToString(bks: List[Book], brs: List[Borrower]): String =
     "\n--- Status Report of Test Library ---\n\n" +
-      Library.libraryToString(bks, brs) + "\n\n" +
+      libraryToString(bks, brs) + "\n\n" +
       bks.map(bk => Book.bookToString(bk)).mkString("\n") + "\n\n" +
       brs.map(br => Borrower.borrowerToString(br)).mkString("\n") + "\n\n" +
       "--- End of Status Report ---\n"
