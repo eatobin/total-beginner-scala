@@ -11,7 +11,7 @@ object Book {
   def setBorrower(br: Option[Borrower], bk: Book): Book = bk.copy(borrower = br)
 
   def availableString(bk: Book): String = {
-    Book.getBorrower(bk) match {
+    getBorrower(bk) match {
       case None => "Available"
       case Some(br) => "Checked out to " + Borrower.getName(br)
     }
@@ -19,8 +19,8 @@ object Book {
 
   def bookToString(bk: Book): String =
     Book.getTitle(bk) +
-      " by " + Book.getAuthor(bk) +
-      "; " + Book.availableString(bk)
+      " by " + getAuthor(bk) +
+      "; " + availableString(bk)
 
 }
 
