@@ -1,3 +1,5 @@
+package total
+
 case class Borrower(name: String, maxBooks: Int)
 
 object Borrower {
@@ -15,5 +17,5 @@ object Borrower {
 
 }
 
-// :paste /Users/eatobin/scala_projects/total-beginner-scala/src/main/scala/Borrower.scala
-// val br1 = Borrower("Borrower1", 1)
+// :paste /Users/eatobin/scala_projects/total-beginner-scala/src/main/scala/total.Borrower.scala
+// val br1 = total.Borrower("Borrower1", 1)

@@ -1,3 +1,5 @@
+package total
+
 case class Book(title: String, author: String, borrower: Option[Borrower])
 
 object Book {
@@ -24,7 +26,7 @@ object Book {
 
 }
 
-// :paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/Book.scala
-// :paste /Users/eatobin/scala_projects/total-beginner-scala/src/main/scala/Book.scala
-// val bk1 = Book("Title1", "Author1", Some(Borrower("Borrower1", 1)))
-// val bk2 = Book("Title2", "Author2", None)
+// :paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/total.Book.scala
+// :paste /Users/eatobin/scala_projects/total-beginner-scala/src/main/scala/total.Book.scala
+// val bk1 = total.Book("Title1", "Author1", Some(total.Borrower("Borrower1", 1)))
+// val bk2 = total.Book("Title2", "Author2", None)

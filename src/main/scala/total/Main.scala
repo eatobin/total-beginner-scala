@@ -1,3 +1,5 @@
+package total
+
 import scala.concurrent.stm._
 
 object Main {
@@ -35,12 +37,12 @@ object Main {
 
       println("Now let's do some BAD stuff...\n")
 
-      println("Add a borrower that already exists (Borrower('Jim', 3))")
+      println("Add a borrower that already exists (total.Borrower('Jim', 3))")
       tvBorrowers.transform(Library.addBorrower(Borrower("Jim", 3), _))
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
-      println("Add a book that already exists (Book('War And Peace', 'Tolstoy', None))")
+      println("Add a book that already exists (total.Book('War And Peace', 'Tolstoy', None))")
       tvBooks.transform(Library.addBook(Book("War And Peace", "Tolstoy", None), _))
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
@@ -50,8 +52,8 @@ object Main {
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
-      println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A Book', borrowers))")
-      tvBooks.transform(Library.checkOut("Sue", "Not A Book", tvBorrowers.get, _))
+      println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A total.Book', borrowers))")
+      tvBooks.transform(Library.checkOut("Sue", "Not A total.Book", tvBorrowers.get, _))
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 

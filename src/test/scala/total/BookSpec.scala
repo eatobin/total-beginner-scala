@@ -1,3 +1,5 @@
+package total
+
 import org.scalatest._
 
 class BookSpec extends FlatSpec with Matchers {
@@ -7,14 +9,14 @@ class BookSpec extends FlatSpec with Matchers {
   val br2 = Some(Borrower("Borrower2", 2))
   val bk3 = Book("Title2", "Author2", Some(Borrower("Borrower2", 2)))
 
-  "A Book" should "create itself properly" in {
+  "A total.Book" should "create itself properly" in {
     Book.getTitle(bk1) should be("Title1")
     Book.getAuthor(bk1) should be("Author1")
     Book.getBorrower(bk1) should be(Some(Borrower("Borrower1", 1)))
     Book.getBorrower(bk2) should be(None)
   }
 
-  it should "set a new Borrower" in {
+  it should "set a new total.Borrower" in {
     Book.setBorrower(br2, bk2) should be(bk3)
   }
 

@@ -1,3 +1,5 @@
+package total
+
 object Library {
 
   def addBorrower(br: Borrower, brs: List[Borrower]): List[Borrower] = {
@@ -81,9 +83,9 @@ object Library {
 
 }
 
-//val br1 = Borrower("Borrower1", 1)
-//val br2 = Borrower("Borrower2", 2)
+//val br1 = total.Borrower("Borrower1", 1)
+//val br2 = total.Borrower("Borrower2", 2)
 //val brs1 = List(br1,br2)
-//val br3 = Borrower("Borrower3", 3)
+//val br3 = total.Borrower("Borrower3", 3)
 //:paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/Library.scala
 //:paste /Users/eatobin/scala_projects/total-beginner-scala/src/main/scala/Library.scala
