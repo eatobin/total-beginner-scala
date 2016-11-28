@@ -6,4 +6,7 @@ package object total {
   type Title = String
   type Author = String
 
+  type Borrowers = List[Borrower]
+  type Books = List[Book]
+
 }

@@ -9,7 +9,7 @@ class BookSpec extends FlatSpec with Matchers {
   val br2 = Some(Borrower("Borrower2", 2))
   val bk3 = Book("Title2", "Author2", Some(Borrower("Borrower2", 2)))
 
-  "A total.Book" should "create itself properly" in {
+  "A Book" should "create itself properly" in {
     Book.getTitle(bk1) should be("Title1")
     Book.getAuthor(bk1) should be("Author1")
     Book.getBorrower(bk1) should be(Some(Borrower("Borrower1", 1)))

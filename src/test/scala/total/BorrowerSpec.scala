@@ -6,7 +6,7 @@ class BorrowerSpec extends FlatSpec with Matchers {
 
   val br1 = Borrower("Borrower1", 1)
 
-  "A total.Borrower" should "create itself properly" in {
+  "A Borrower" should "create itself properly" in {
     Borrower.getName(br1) should be("Borrower1")
     Borrower.getMaxBooks(br1) should be(1)
   }
