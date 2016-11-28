@@ -17,5 +17,5 @@ object Borrower {
 
 }
 
-// :paste /Users/eatobin/scala_projects/total-beginner-scala/src/main/scala/total.Borrower.scala
+// :paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/total/Borrower.scala
 // val br1 = total.Borrower("Borrower1", 1)
