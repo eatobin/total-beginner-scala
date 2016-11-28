@@ -87,5 +87,4 @@ object Library {
 //val br2 = total.Borrower("Borrower2", 2)
 //val brs1 = List(br1,br2)
 //val br3 = total.Borrower("Borrower3", 3)
-//:paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/Library.scala
-//:paste /Users/eatobin/scala_projects/total-beginner-scala/src/main/scala/Library.scala
+//:paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/total/Library.scala
