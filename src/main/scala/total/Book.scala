@@ -1,12 +1,12 @@
 package total
 
-case class Book(title: String, author: String, borrower: Option[Borrower])
+case class Book(title: Title, author: Author, borrower: Option[Borrower])
 
 object Book {
 
-  def getTitle(bk: Book): String = bk.title
+  def getTitle(bk: Book): Title = bk.title
 
-  def getAuthor(bk: Book): String = bk.author
+  def getAuthor(bk: Book): Author = bk.author
 
   def getBorrower(bk: Book): Option[Borrower] = bk.borrower
 
@@ -26,7 +26,6 @@ object Book {
 
 }
 
-// :paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/total.Book.scala
-// :paste /Users/eatobin/scala_projects/total-beginner-scala/src/main/scala/total.Book.scala
+// :paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/total/Book.scala
 // val bk1 = total.Book("Title1", "Author1", Some(total.Borrower("Borrower1", 1)))
 // val bk2 = total.Book("Title2", "Author2", None)
