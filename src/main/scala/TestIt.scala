@@ -23,13 +23,13 @@ object TestIt extends App with DefaultJsonProtocol with NullOptions {
 
   case class Book(name: String, author: String, borrower: Borrower)
 
-  implicit val joe = jsonFormat2(Borrower)
-  implicit val ginger = jsonFormat3(Book)
+  implicit val borrowerFormat = jsonFormat2(Borrower)
+  implicit val bookFormat = jsonFormat3(Book)
 
-  val json = Book("mary", "bary", Borrower("Title", 22)).toJson
+  val book = Book("Title1", "Author1", Borrower("Borrower1", 111)).toJson
 
   val w = new BufferedWriter(new FileWriter("output.json"))
-  w.write(json.toJson.prettyPrint)
+  w.write(book.toJson.prettyPrint)
   w.close()
 }
 
