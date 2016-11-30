@@ -11,11 +11,11 @@ object TestIt extends App with DefaultJsonProtocol with NullOptions {
   implicit val borrowerFormat = jsonFormat2(Borrower)
   implicit val bookFormat = jsonFormat3(Book)
 
-  //  val book = Book("Title1", "Author1", Some(Borrower("Borrower1", 1))).toJson
-  val book = Book("Title1", "Author1", None).toJson
+  val book = Book("Title1", "Author1", Some(Borrower("Borrower1", 1))).toJson
+  //  val book = Book("Title1", "Author1", None).toJson
 
-  val w = new BufferedWriter(new FileWriter("output.json"))
-  w.write(book.toJson.prettyPrint)
+  val w = new BufferedWriter(new FileWriter("output.txt"))
+  w.write(book.toJson.toString)
   w.close()
 
 }
