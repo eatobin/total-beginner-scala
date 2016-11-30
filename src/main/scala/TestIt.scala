@@ -4,12 +4,11 @@ import spray.json._
 
 object TestIt extends App with DefaultJsonProtocol {
 
-  case class Foo(name: String, x: String)
+  case class Foo(name: String, x: String, z: Int)
 
-  implicit val fooFormat = jsonFormat2(Foo.apply)
-  val foo = Foo("xxx", "jj")
-  //  println(foo.toJson)
+  implicit val fooFormat = jsonFormat3(Foo.apply)
+  val foo = Foo("xxx", "jj", 60)
   val w = new BufferedWriter(new FileWriter("output.json"))
-  w.write(foo.toJson.toString())
-  w.close
+  w.write(foo.toJson.prettyPrint)
+  w.close()
 }
