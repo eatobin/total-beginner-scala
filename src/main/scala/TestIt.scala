@@ -19,14 +19,14 @@ import spray.json._
 
 object TestIt extends App with DefaultJsonProtocol with NullOptions {
 
-  case class Value(amt: Int)
+  case class Borrower(title: String, maxBooks: Int)
 
-  case class Item(name: String, count: Value)
+  case class Book(name: String, author: String, borrower: Borrower)
 
-  implicit val valueFormat = jsonFormat1(Value)
-  implicit val itemFormat = jsonFormat2(Item)
+  implicit val joe = jsonFormat2(Borrower)
+  implicit val ginger = jsonFormat3(Book)
 
-  val json = Item("mary", Value(2)).toJson
+  val json = Book("mary", "bary", Borrower("Title", 22)).toJson
 
   val w = new BufferedWriter(new FileWriter("output.json"))
   w.write(json.toJson.prettyPrint)
