@@ -40,3 +40,16 @@ s1: String = [{"title":"Title2","author":"Author22","borrower":null}, {"title":"
 
 scala> s1.parseJson
 res11: spray.json.JsValue = [{"title":"Title2","author":"Author22","borrower":null},{"title":"Title99","author":"Author99","borrower":null}]
+
+
+scala> import total.Book
+import total.Book
+
+scala> val bk99 = total.Book("Title99", "Author99", Some(total.Borrower("Borrower99", 99)))
+bk99: total.Book = Book(Title99,Author99,Some(Borrower(Borrower99,99)))
+
+scala> val bk99ast = bk99.toJson
+bk99ast: spray.json.JsValue = {"title":"Title99","author":"Author99","borrower":{"name":"Borrower99","maxBooks":99}}
+
+scala> bk99ast.convertTo[Book]
+res3: total.Book = Book(Title99,Author99,Some(Borrower(Borrower99,99)))
