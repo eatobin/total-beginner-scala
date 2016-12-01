@@ -1,8 +1,10 @@
 package total
 
+import spray.json._
+
 case class Borrower(name: Name, maxBooks: MaxBooks)
 
-object Borrower {
+object Borrower extends DefaultJsonProtocol {
 
   def getName(br: Borrower): Name = br.name
 
@@ -14,6 +16,8 @@ object Borrower {
 
   def borrowerToString(br: Borrower): String =
     getName(br) + " (" + getMaxBooks(br).toString + " books)"
+
+  implicit val borrowerFormat = jsonFormat2(Borrower.apply)
 
 }
 

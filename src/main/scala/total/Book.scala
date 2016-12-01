@@ -1,8 +1,10 @@
 package total
 
+import spray.json._
+
 case class Book(title: Title, author: Author, borrower: Option[Borrower])
 
-object Book {
+object Book extends DefaultJsonProtocol with NullOptions {
 
   def getTitle(bk: Book): Title = bk.title
 
@@ -23,6 +25,8 @@ object Book {
     Book.getTitle(bk) +
       " by " + getAuthor(bk) +
       "; " + availableString(bk)
+
+  implicit val bookFormat = jsonFormat3(Book.apply)
 
 }
 
