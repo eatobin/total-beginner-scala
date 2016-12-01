@@ -22,11 +22,15 @@ import spray.json._
 
 case class Value(amt: Int)
 
+object Value
+
 case class Item(name: String, count: Value)
 
+object Item
+
 object MyJsonProtocol extends DefaultJsonProtocol {
-  implicit val valueFormat = jsonFormat1(Value)
-  implicit val itemFormat = jsonFormat2(Item)
+  implicit val valueFormat = jsonFormat1(Value.apply)
+  implicit val itemFormat = jsonFormat2(Item.apply)
 }
 
 import MyJsonProtocol._
