@@ -76,6 +76,16 @@ object Library extends DefaultJsonProtocol with NullOptions {
 
   def jsonStringToBooks(s: String): Books =
     s.parseJson.convertTo[Books]
+  
+  borrowersToYamlString :: Borrowers -> String
+borrowersToYamlString brsb =
+  BS.unpack (Y.encode brs)
+    where brs = fst brsb
+
+booksToYamlString :: Books -> String
+booksToYamlString bksb =
+  BS.unpack (Y.encode bks)
+    where bks = fst bksb
 
   def libraryToString(bks: Books, brs: Borrowers): String =
     "Test Library: " +
