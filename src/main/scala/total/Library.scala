@@ -1,6 +1,8 @@
 package total
 
-object Library {
+import spray.json._
+
+object Library extends DefaultJsonProtocol with NullOptions {
 
   def addBorrower(br: Borrower, brs: Borrowers): Borrowers = {
     if (brs.contains(br))
@@ -69,12 +71,11 @@ object Library {
     } else bks
   }
 
-yamlStringToBorrowrs :: String -> Borrowers
-yamlStringToBorrowrs s =
-  if isJust mbrs
-    then (fromJust mbrs, True)
-    else ([], False)
-      where mbrs = Y.decode (BS.pack s) :: Maybe [Borrower]
+  def jsonStringToBorrowers(s: String): Borrowers =
+    s.parseJson.convertTo[Borrowers]
+
+  def jsonStringToBooks(s: String): Books =
+    s.parseJson.convertTo[Books]
 
   def libraryToString(bks: Books, brs: Borrowers): String =
     "Test Library: " +

@@ -33,6 +33,8 @@ res6: String = {"title":"Title2","author":"Author2","borrower":null}
 
 "{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null}"
 
+"[{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":{\"name\":\"Borrower99\",\"maxBooks\":99}}]"
+
 "[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null}, {\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]"
 
 scala> val s1 = "[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null}, {\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]"
