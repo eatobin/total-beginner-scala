@@ -55,3 +55,6 @@ bk99ast: spray.json.JsValue = {"title":"Title99","author":"Author99","borrower":
 
 scala> bk99ast.convertTo[Book]
 res3: total.Book = Book(Title99,Author99,Some(Borrower(Borrower99,99)))
+
+scala> "[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null}, {\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]".parseJson.convertTo[Books]
+res9: total.Books = List(Book(Title2,Author22,None), Book(Title99,Author99,None))

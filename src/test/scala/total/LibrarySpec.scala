@@ -72,6 +72,11 @@ class LibrarySpec extends FlatSpec with Matchers {
       be(bks1)
   }
 
+  it should "parse json strings to objects" in {
+    Library.jsonStringToBooks("[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null}, {\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]") should
+      be(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None)))
+  }
+
   it should "print out a Status report" in {
     Library.statusToString(bks2, brs2) should be(ss)
   }
