@@ -69,6 +69,13 @@ object Library {
     } else bks
   }
 
+yamlStringToBorrowrs :: String -> Borrowers
+yamlStringToBorrowrs s =
+  if isJust mbrs
+    then (fromJust mbrs, True)
+    else ([], False)
+      where mbrs = Y.decode (BS.pack s) :: Maybe [Borrower]
+
   def libraryToString(bks: Books, brs: Borrowers): String =
     "Test Library: " +
       bks.length.toString + " books; " +
