@@ -73,10 +73,17 @@ class LibrarySpec extends FlatSpec with Matchers {
   }
 
   it should "parse json strings to objects" in {
-    Library.jsonStringToBorrowers("[{\"name\":\"Borrower1\",\"maxBooks\":1}, {\"name\":\"Borrower2\",\"maxBooks\":2}]") should
+    Library.jsonStringToBorrowers("[{\"name\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]") should
       be(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2)))
-    Library.jsonStringToBooks("[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null}, {\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]") should
+    Library.jsonStringToBooks("[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]") should
       be(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None)))
+  }
+
+  it should "convert objects to json strings" in {
+    Library.borrowersToJsonString(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))) should
+      be("[{\"name\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]")
+    Library.booksToJsonString(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None))) should
+      be("[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]")
   }
 
   it should "print out a Status report" in {
