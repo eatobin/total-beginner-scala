@@ -62,11 +62,22 @@ object Main {
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
+      println("Okay... let's finish with some persistence. First clear the whole library:")
+      newEmptyV(tvBooks, tvBorrowers)
+
       println("And... that's all...")
       println("Thanks - bye!\n")
 
     }
 
+  }
+
+  def newEmptyV(tvBooks: Ref[List[Book]], tvBorrowers: Ref[List[Borrower]]): Unit = {
+    atomic { implicit txn =>
+      tvBooks.set(List[Book]())
+      tvBorrowers.set(List[Borrower]())
+      println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+    }
   }
 
 }
