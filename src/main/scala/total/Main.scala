@@ -1,6 +1,9 @@
 package total
 
+import java.nio.file.{Files, Paths}
+
 import scala.concurrent.stm._
+import scala.io.Source
 
 object Main {
 
@@ -79,5 +82,17 @@ object Main {
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
     }
   }
+
+  def readFileIntoJsonString(fp: FilePath): String = {
+    if (Files.exists(Paths.get(fp))) {
+      val bufferedSource = Source.fromFile(fp)
+
+      val result = Source.fromFile(fp).getLines.mkString
+      bufferedSource.close
+      result
+    } else ""
+  }
+
+  val jsonBorrowersFileBefore = "tester.json"
 
 }
