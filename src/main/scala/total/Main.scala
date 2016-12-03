@@ -83,14 +83,14 @@ object Main {
     }
   }
 
-  def readFileIntoJsonString(fp: FilePath): String = {
+  def readFileIntoJsonString(fp: FilePath): Option[String] = {
     if (Files.exists(Paths.get(fp))) {
       val bufferedSource = Source.fromFile(fp)
 
       val result = Source.fromFile(fp).getLines.mkString
       bufferedSource.close
-      result
-    } else ""
+      Some(result)
+    } else None
   }
 
   val jsonBorrowersFileBefore = "tester.json"
