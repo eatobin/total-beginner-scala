@@ -10,5 +10,6 @@ package object total {
   type Books = List[Book]
 
   type FilePath = String
+  type JsonString = String
 
 }

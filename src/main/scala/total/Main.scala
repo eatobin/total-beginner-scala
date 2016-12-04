@@ -4,6 +4,7 @@ import java.nio.file.{Files, Paths}
 
 import scala.concurrent.stm._
 import scala.io.Source
+import java.io._
 
 object Main {
 
@@ -85,13 +86,20 @@ object Main {
     }
   }
 
-  def readFileIntoJsonString(fp: FilePath): Option[String] = {
+  def readFileIntoJsonString(fp: FilePath): Option[JsonString] = {
     if (Files.exists(Paths.get(fp))) {
       val bufferedSource = Source.fromFile(fp)
       val result = Source.fromFile(fp).getLines.mkString
       bufferedSource.close
       Some(result)
     } else None
+  }
+
+  def writeJsonStringToFile(js: JsonString, fp: FilePath): Unit = {
+    val file = new File(fp)
+    val bw = new BufferedWriter(new FileWriter(file))
+    bw.write(js)
+    bw.close()
   }
 
 }
