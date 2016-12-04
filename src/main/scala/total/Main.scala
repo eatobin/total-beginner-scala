@@ -10,6 +10,8 @@ object Main {
   val tvBorrowers: Ref[List[Borrower]] = Ref(List())
   val tvBooks: Ref[List[Book]] = Ref(List())
 
+  val jsonBorrowersFileBefore = "tester.json"
+
   def main(args: Array[String]): Unit = {
 
     atomic { implicit txn =>
@@ -86,13 +88,10 @@ object Main {
   def readFileIntoJsonString(fp: FilePath): Option[String] = {
     if (Files.exists(Paths.get(fp))) {
       val bufferedSource = Source.fromFile(fp)
-
       val result = Source.fromFile(fp).getLines.mkString
       bufferedSource.close
       Some(result)
     } else None
   }
-
-  val jsonBorrowersFileBefore = "tester.json"
 
 }
