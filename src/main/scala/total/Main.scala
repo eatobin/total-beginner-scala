@@ -11,7 +11,8 @@ object Main {
   val tvBorrowers: Ref[List[Borrower]] = Ref(List())
   val tvBooks: Ref[List[Book]] = Ref(List())
 
-  val jsonBorrowersFileBefore = "tester.json"
+  val jsonBorrowersFileBefore = "borrowers-before.json"
+  val jsonBooksFile = "books-before.json"
 
   def main(args: Array[String]): Unit = {
 
@@ -71,8 +72,13 @@ object Main {
       println("Okay... let's finish with some persistence. First clear the whole library:")
       newEmptyV(tvBooks, tvBorrowers)
 
-      val bb = readFileIntoJsonString("tester.json")
-      println(Library.jsonStringToBooks(bb))
+      println("Lets read in a new library from \"borrowers-before.json\" and \"books-before.json\":")
+      newV(tvBooks, tvBorrowers, jsonBorrowersFileBefore, jsonBooksFile)
+
+      //      val bb = readFileIntoJsonString("books-before.json")
+      //      println(Library.jsonStringToBooks(bb))
+      //
+      //      val bb2 = writeJsonStringToFile("[\n  {\n    \"title\": \"Title1\",\n    \"author\": \"Author1\",\n    \"borrower\": {\n      \"name\": \"Borrower1\",\n      \"maxBooks\": 1\n    }\n  }\n]", "tester2.json")
 
       println("And... that's all...")
       println("Thanks - bye!\n")
@@ -103,6 +109,19 @@ object Main {
     val bw = new BufferedWriter(new FileWriter(file))
     bw.write(js)
     bw.close()
+  }
+
+  def newV(tvBooks: Ref[List[Book]], tvBorrowers: Ref[List[Borrower]], brsfp: FilePath, bksfp: FilePath): Unit = {
+    val jsonBrsStr = Main.readFileIntoJsonString(brsfp)
+    val jsonBksStr = Main.readFileIntoJsonString(bksfp)
+    val brs = Library.jsonStringToBorrowers(jsonBrsStr)
+    val bks = Library.jsonStringToBooks(jsonBksStr)
+
+    atomic { implicit txn =>
+      tvBooks.set(bks)
+      tvBorrowers.set(brs)
+      println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+    }
   }
 
 }
