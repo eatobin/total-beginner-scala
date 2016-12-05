@@ -13,6 +13,9 @@ object Main {
 
   val jsonBorrowersFileBefore = "borrowers-before.json"
   val jsonBooksFile = "books-before.json"
+  val jsonBorrowersFileAfter = "borrowers-after.json"
+  val jsonBorrowersFileBad = "bad-borrowers.json"
+  val emptyFile = "empty.json"
 
   def main(args: Array[String]): Unit = {
 
@@ -75,10 +78,15 @@ object Main {
       println("Lets read in a new library from \"borrowers-before.json\" and \"books-before.json\":")
       newV(tvBooks, tvBorrowers, jsonBorrowersFileBefore, jsonBooksFile)
 
+      println("Add... a new borrower:")
+      tvBorrowers.transform(Library.addBorrower(Borrower("BorrowerNew", 300), _))
+      println(Library.statusToString(tvBooks.get, tvBorrowers.get))
+
+
       //      val bb = readFileIntoJsonString("books-before.json")
       //      println(Library.jsonStringToBooks(bb))
       //
-      //      val bb2 = writeJsonStringToFile("[\n  {\n    \"title\": \"Title1\",\n    \"author\": \"Author1\",\n    \"borrower\": {\n      \"name\": \"Borrower1\",\n      \"maxBooks\": 1\n    }\n  }\n]", "tester2.json")
+      //      val bb2 = writeJsonStringToFile("[\n  {\n    \"title\": \"Title1\",\n    \"author\": \"Author1\",\n    \"borrower\": {\n      \"name\": \"Borrower1\",\n      \"maxBooks\": 1\n    }\n  }\n]", "empty.json")
 
       println("And... that's all...")
       println("Thanks - bye!\n")
