@@ -71,11 +71,19 @@ object Library extends DefaultJsonProtocol with NullOptions {
     } else bks
   }
 
-  def jsonStringToBorrowers(s: String): Borrowers =
-    s.parseJson.convertTo[Borrowers]
+  def jsonStringToBorrowers(s: Option[String]): Borrowers = {
+    if (s.isDefined)
+      s.get.parseJson.convertTo[Borrowers]
+    else
+      List[Borrower]()
+  }
 
-  def jsonStringToBooks(s: String): Books =
-    s.parseJson.convertTo[Books]
+  def jsonStringToBooks(s: Option[String]): Books = {
+    if (s.isDefined)
+      s.get.parseJson.convertTo[Books]
+    else
+      List[Book]()
+  }
 
   def borrowersToJsonString(brs: Borrowers): String =
     brs.toJson.compactPrint

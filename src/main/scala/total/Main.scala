@@ -1,10 +1,10 @@
 package total
 
+import java.io._
 import java.nio.file.{Files, Paths}
 
 import scala.concurrent.stm._
 import scala.io.Source
-import java.io._
 
 object Main {
 
@@ -70,6 +70,9 @@ object Main {
 
       println("Okay... let's finish with some persistence. First clear the whole library:")
       newEmptyV(tvBooks, tvBorrowers)
+
+      val bb = readFileIntoJsonString("tester.json")
+      println(Library.jsonStringToBooks(bb))
 
       println("And... that's all...")
       println("Thanks - bye!\n")
