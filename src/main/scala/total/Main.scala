@@ -82,11 +82,24 @@ object Main {
       tvBorrowers.transform(Library.addBorrower(Borrower("BorrowerNew", 300), _))
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
+      println("Save the revised borrowers to \"borrowers-after.json\"")
+      val jsonBrsStr = Library.borrowersToJsonString(tvBorrowers.get)
+      writeJsonStringToFile(jsonBrsStr, "borrowers-after.json")
 
-      //      val bb = readFileIntoJsonString("books-before.json")
-      //      println(Library.jsonStringToBooks(bb))
-      //
-      //      val bb2 = writeJsonStringToFile("[\n  {\n    \"title\": \"Title1\",\n    \"author\": \"Author1\",\n    \"borrower\": {\n      \"name\": \"Borrower1\",\n      \"maxBooks\": 1\n    }\n  }\n]", "empty.json")
+      println("Clear the whole library again:")
+      newEmptyV(tvBooks, tvBorrowers)
+
+      println("Then read in the revised library from \"borrowers-after.json\" and \"books-before.json\":")
+      newV(tvBooks, tvBorrowers, jsonBorrowersFileAfter, jsonBooksFile)
+
+      println("Last... delete the file \"borrowers-after.yml\"")
+      new File(jsonBorrowersFileAfter).delete()
+
+      println("Then try to make a library using the deleted \"borrowers-after.json\":")
+      newV(tvBooks, tvBorrowers, jsonBorrowersFileAfter, jsonBooksFile)
+
+      println("And if we read in a file with mal-formed json content... like \"bad-borrowers.json\":")
+      newV(tvBooks, tvBorrowers, jsonBorrowersFileBad, jsonBooksFile)
 
       println("And... that's all...")
       println("Thanks - bye!\n")
