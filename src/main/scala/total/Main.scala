@@ -101,6 +101,9 @@ object Main {
       println("And if we read in a file with mal-formed json content... like \"bad-borrowers.json\":")
       newV(tvBooks, tvBorrowers, jsonBorrowersFileBad, jsonBooksFile)
 
+      println("Or how about reading in an empty file... \"empty.json\":")
+      newV(tvBooks, tvBorrowers, emptyFile, jsonBooksFile)
+
       println("And... that's all...")
       println("Thanks - bye!\n")
 
