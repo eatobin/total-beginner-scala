@@ -72,17 +72,27 @@ object Library extends DefaultJsonProtocol with NullOptions {
   }
 
   def jsonStringToBorrowers(s: Option[JsonString]): Borrowers = {
-    if (s.isDefined)
-      s.get.parseJson.convertTo[Borrowers]
-    else
-      List[Borrower]()
+    try {
+      if (s.isDefined)
+        s.get.parseJson.convertTo[Borrowers]
+      else
+        List[Borrower]()
+    } catch {
+      case ex: Throwable =>
+        List[Borrower]()
+    }
   }
 
   def jsonStringToBooks(s: Option[JsonString]): Books = {
-    if (s.isDefined)
-      s.get.parseJson.convertTo[Books]
-    else
-      List[Book]()
+    try {
+      if (s.isDefined)
+        s.get.parseJson.convertTo[Books]
+      else
+        List[Book]()
+    } catch {
+      case ex: Throwable =>
+        List[Book]()
+    }
   }
 
   def borrowersToJsonString(brs: Borrowers): JsonString =
