@@ -1,0 +1,10 @@
+[
+  {
+    "title": "Title1",
+    "author": "Author1",
+    "borrower": {
+      "name": "Borrower1",
+      "maxBooks": 1
+    }
+  }
+]
