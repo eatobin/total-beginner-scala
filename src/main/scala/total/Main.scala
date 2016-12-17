@@ -138,8 +138,8 @@ object Main {
   def newV(tvBooks: Ref[List[Book]], tvBorrowers: Ref[List[Borrower]], brsfp: FilePath, bksfp: FilePath): Unit = {
     val jsonBrsStr = Main.readFileIntoJsonString(brsfp)
     val jsonBksStr = Main.readFileIntoJsonString(bksfp)
-    val brs = Library.jsonStringToBorrowers(jsonBrsStr)
-    val bks = Library.jsonStringToBooks(jsonBksStr)
+    val brs = Library.jsonStringToBorrowers(jsonBrsStr).get
+    val bks = Library.jsonStringToBooks(jsonBksStr).get
 
     atomic { implicit txn =>
       tvBooks.set(bks)
