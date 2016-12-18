@@ -86,6 +86,12 @@ class LibrarySpec extends FlatSpec with Matchers {
       be(Left("JSON parse error."))
   }
 
+  it should "report read file errors" in {
+    val s = Main.readFileIntoJsonString("noFile.json")
+    Library.jsonStringToBorrowers(s) should
+      be(Left("File read error."))
+  }
+
   it should "convert objects to json strings" in {
     Library.borrowersToJsonString(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))) should
       be("[{\"name\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]")

@@ -102,7 +102,7 @@ object Main {
     //      newV(tvBooks, tvBorrowers, emptyFile, jsonBooksFile)
     //
     //      println("And... that's all...")
-      println("Thanks - bye!\n")
+    println("Thanks - bye!\n")
 
     //    }
     //
@@ -128,13 +128,13 @@ object Main {
   //
   def readFileIntoJsonString(fp: FilePath): Either[String, JsonString] =
   try {
-      val bufferedSource = Source.fromFile(fp)
-      val js = Source.fromFile(fp).getLines.mkString
-      bufferedSource.close
-      Right(js)
+    val bufferedSource = Source.fromFile(fp)
+    val js = Source.fromFile(fp).getLines.mkString
+    bufferedSource.close
+    Right(js)
   } catch {
     case e: Exception => Left("File read error.")
-    }
+  }
 
   //
   //  def writeJsonStringToFile(js: JsonString, fp: FilePath): Unit = {
