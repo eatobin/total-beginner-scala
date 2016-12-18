@@ -73,10 +73,10 @@ class LibrarySpec extends FlatSpec with Matchers {
   }
 
   it should "parse json strings to objects" in {
-    Library.jsonStringToBorrowers(Some("[{\"name\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]")) should
-      be(Some(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))))
-    Library.jsonStringToBooks(Some("[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]")) should
-      be(Some(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None))))
+    Library.jsonStringToBorrowers(Right("[{\"name\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]")) should
+      be(Right(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))))
+    Library.jsonStringToBooks(Right("[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]")) should
+      be(Right(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None))))
   }
 
   it should "convert objects to json strings" in {
