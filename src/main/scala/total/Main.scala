@@ -126,7 +126,7 @@ object Main {
   //  //     } else ""
   //  //   }
   //
-  def readFileIntoJsonString(fp: FilePath): Either[String, JsonString] =
+  def readFileIntoJsonString(fp: FilePath): Either[ErrorString, JsonString] =
   try {
     val bufferedSource = Source.fromFile(fp)
     val js = Source.fromFile(fp).getLines.mkString

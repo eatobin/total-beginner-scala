@@ -71,7 +71,7 @@ object Library extends DefaultJsonProtocol with NullOptions {
     } else bks
   }
 
-  def jsonStringToBorrowers(s: Either[String, JsonString]): Either[String, Borrowers] = {
+  def jsonStringToBorrowers(s: Either[ErrorString, JsonString]): Either[ErrorString, Borrowers] = {
     s match {
       case Right(r) =>
         try {
@@ -85,7 +85,7 @@ object Library extends DefaultJsonProtocol with NullOptions {
     }
   }
 
-  def jsonStringToBooks(s: Either[String, JsonString]): Either[String, Books] = {
+  def jsonStringToBooks(s: Either[ErrorString, JsonString]): Either[ErrorString, Books] = {
     s match {
       case Right(r) =>
         try {

@@ -11,5 +11,6 @@ package object total {
 
   type FilePath = String
   type JsonString = String
+  type ErrorString = String
 
 }
