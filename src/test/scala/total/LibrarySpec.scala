@@ -84,10 +84,8 @@ class LibrarySpec extends FlatSpec with Matchers {
       be(Left("JSON parse error."))
     Library.jsonStringToBooks(Right("[{\"titleX\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]")) should
       be(Left("JSON parse error."))
-    Library.jsonStringToBooks(Right("[]")) should
-      be(Left("JSON parse errorX."))
   }
-  
+
 
   it should "report read file errors" in {
     val s = Main.readFileIntoJsonString("noFile.json")
