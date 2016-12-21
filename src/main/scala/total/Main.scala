@@ -1,8 +1,7 @@
 package total
 
-import java.io.{BufferedWriter, File, FileWriter}
-
 import scala.concurrent.stm._
+import java.io._
 import scala.io.Source
 
 object Main {
@@ -110,7 +109,6 @@ object Main {
 
   }
 
-
   def newEmptyV(tvBooks: Ref[List[Book]], tvBorrowers: Ref[List[Borrower]]): Unit = {
     atomic { implicit txn =>
       tvBooks.set(List[Book]())
@@ -119,16 +117,6 @@ object Main {
     }
   }
 
-  //
-  //  //   def readFileIntoJsonString(fp: FilePath): Either[String, JsonString] = {
-  //  //     if (Files.exists(Paths.get(fp))) {
-  //  //       val bufferedSource = Source.fromFile(fp)
-  //  //       val result = Source.fromFile(fp).getLines.mkString
-  //  //       bufferedSource.close
-  //  //       result
-  //  //     } else ""
-  //  //   }
-  //
   def readFileIntoJsonString(fp: FilePath): Either[ErrorString, JsonString] =
   try {
     val bufferedSource = Source.fromFile(fp)
