@@ -1,7 +1,8 @@
 package total
 
-import scala.concurrent.stm._
 import java.io._
+
+import scala.concurrent.stm._
 import scala.io.Source
 
 object Main {
@@ -118,14 +119,14 @@ object Main {
   }
 
   def readFileIntoJsonString(fp: FilePath): Either[ErrorString, JsonString] =
-  try {
-    val bufferedSource = Source.fromFile(fp)
-    val js = Source.fromFile(fp).getLines.mkString
-    bufferedSource.close
-    Right(js)
-  } catch {
-    case e: Exception => Left("File read error.")
-  }
+    try {
+      val bufferedSource = Source.fromFile(fp)
+      val js = Source.fromFile(fp).getLines.mkString
+      bufferedSource.close
+      Right(js)
+    } catch {
+      case e: Exception => Left("File read error.")
+    }
 
 
   def writeJsonStringToFile(js: JsonString, fp: FilePath): Unit = {
