@@ -18,6 +18,13 @@ object Library extends DefaultJsonProtocol with NullOptions {
       bk :: bks
   }
 
+  def addItem[A](x: A, xs: List[A]): List[A] = {
+    if (xs.contains(x))
+      xs
+    else
+      x :: xs
+  }
+
   def removeBook(bk: Book, bks: Books): Books = {
     if (bks.contains(bk))
       bks.filter(_ != bk)
