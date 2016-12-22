@@ -37,6 +37,11 @@ object Library extends DefaultJsonProtocol with NullOptions {
     coll.headOption
   }
 
+  def findItem[A](tgt: String, coll: List[A], f: (A) => String): Option[A] = {
+    val result = coll.filter(item => f(item) == tgt)
+    result.headOption
+  }
+
   def findBorrower(n: Name, brs: Borrowers): Option[Borrower] = {
     val coll = brs.filter(br => Borrower.getName(br) == n)
     coll.headOption
