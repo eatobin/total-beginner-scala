@@ -38,19 +38,9 @@ class LibrarySpec extends FlatSpec with Matchers {
     Library.removeBook(bk3, bks1) should be(bks1)
   }
 
-  it should "find a Book correctly" in {
-    Library.findBook("Title1", bks2) should be(Some(bk1))
-    Library.findBook("Title11", bks2) should be(None)
-
+  it should "find a Book or Borrower correctly" in {
     Library.findItem("Title1", bks2, Book.getTitle) should be(Some(bk1))
     Library.findItem("Title11", bks2, Book.getTitle) should be(None)
-
-
-  }
-
-  it should "find a Borrower correctly" in {
-    Library.findBorrower("Borrower1", brs2) should be(Some(br1))
-    Library.findBorrower("Borrower11", brs2) should be(None)
 
     Library.findItem("Borrower1", brs2, Borrower.getName) should be(Some(br1))
     Library.findItem("Borrower11", brs2, Borrower.getName) should be(None)

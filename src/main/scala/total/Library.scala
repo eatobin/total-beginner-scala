@@ -32,20 +32,20 @@ object Library extends DefaultJsonProtocol with NullOptions {
       bks
   }
 
-  def findBook(t: Title, bks: Books): Option[Book] = {
-    val coll = bks.filter(bk => Book.getTitle(bk) == t)
-    coll.headOption
-  }
+  //  def findBook(t: Title, bks: Books): Option[Book] = {
+  //    val coll = bks.filter(bk => Book.getTitle(bk) == t)
+  //    coll.headOption
+  //  }
 
   def findItem[A](tgt: String, coll: List[A], f: (A) => String): Option[A] = {
     val result = coll.filter(item => f(item) == tgt)
     result.headOption
   }
 
-  def findBorrower(n: Name, brs: Borrowers): Option[Borrower] = {
-    val coll = brs.filter(br => Borrower.getName(br) == n)
-    coll.headOption
-  }
+  //  def findBorrower(n: Name, brs: Borrowers): Option[Borrower] = {
+  //    val coll = brs.filter(br => Borrower.getName(br) == n)
+  //    coll.headOption
+  //  }
 
   def getBooksForBorrower(br: Borrower, bks: Books): Books =
     bks.filter(bk => Book.getBorrower(bk).contains(br))
@@ -63,8 +63,8 @@ object Library extends DefaultJsonProtocol with NullOptions {
     Book.getBorrower(bk).isDefined
 
   def checkOut(n: Name, t: Title, brs: Borrowers, bks: Books): Books = {
-    val mbk = findBook(t, bks)
-    val mbr = findBorrower(n, brs)
+    val mbk = findItem(t, bks, Book.getTitle)
+    val mbr = findItem(n, brs, Borrower.getName)
 
     if (mbk.isDefined && mbr.isDefined && notMaxedOut(mbr.get, bks) && bookNotOut(mbk.get)) {
       val newBook = Book.setBorrower(mbr, mbk.get)
@@ -74,7 +74,7 @@ object Library extends DefaultJsonProtocol with NullOptions {
   }
 
   def checkIn(t: Title, bks: Books): Books = {
-    val mbk = findBook(t, bks)
+    val mbk = findItem(t, bks, Book.getTitle)
 
     if (mbk.isDefined && bookOut(mbk.get)) {
       val newBook = Book.setBorrower(None, mbk.get)
