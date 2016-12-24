@@ -4,20 +4,6 @@ import spray.json._
 
 object Library extends DefaultJsonProtocol with NullOptions {
 
-  //  def addBorrower(br: Borrower, brs: Borrowers): Borrowers = {
-  //    if (brs.contains(br))
-  //      brs
-  //    else
-  //      br :: brs
-  //  }
-
-  //  def addBook(bk: Book, bks: Books): Books = {
-  //    if (bks.contains(bk))
-  //      bks
-  //    else
-  //      bk :: bks
-  //  }
-
   def addItem[A](x: A, xs: List[A]): List[A] = {
     if (xs.contains(x))
       xs
@@ -32,20 +18,10 @@ object Library extends DefaultJsonProtocol with NullOptions {
       bks
   }
 
-  //  def findBook(t: Title, bks: Books): Option[Book] = {
-  //    val coll = bks.filter(bk => Book.getTitle(bk) == t)
-  //    coll.headOption
-  //  }
-
   def findItem[A](tgt: String, coll: List[A], f: (A) => String): Option[A] = {
     val result = coll.filter(item => f(item) == tgt)
     result.headOption
   }
-
-  //  def findBorrower(n: Name, brs: Borrowers): Option[Borrower] = {
-  //    val coll = brs.filter(br => Borrower.getName(br) == n)
-  //    coll.headOption
-  //  }
 
   def getBooksForBorrower(br: Borrower, bks: Books): Books =
     bks.filter(bk => Book.getBorrower(bk).contains(br))
