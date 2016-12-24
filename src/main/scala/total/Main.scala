@@ -20,10 +20,10 @@ object Main {
 
     atomic { implicit txn =>
 
-      tvBorrowers.transform(Library.addBorrower(Borrower("Jim", 3), _))
-      tvBorrowers.transform(Library.addBorrower(Borrower("Sue", 3), _))
-      tvBooks.transform(Library.addBook(Book("War And Peace", "Tolstoy", None), _))
-      tvBooks.transform(Library.addBook(Book("Great Expectations", "Dickens", None), _))
+      tvBorrowers.transform(Library.addItem(Borrower("Jim", 3), _))
+      tvBorrowers.transform(Library.addItem(Borrower("Sue", 3), _))
+      tvBooks.transform(Library.addItem(Book("War And Peace", "Tolstoy", None), _))
+      tvBooks.transform(Library.addItem(Book("Great Expectations", "Dickens", None), _))
       println("\nJust created new library")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
@@ -38,8 +38,8 @@ object Main {
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
       println("Add Eric and The Cat In The Hat")
-      tvBorrowers.transform(Library.addBorrower(Borrower("Eric", 1), _))
-      tvBooks.transform(Library.addBook(Book("The Cat In The Hat", "Dr. Seuss", None), _))
+      tvBorrowers.transform(Library.addItem(Borrower("Eric", 1), _))
+      tvBooks.transform(Library.addItem(Book("The Cat In The Hat", "Dr. Seuss", None), _))
       println("Check Out Dr. Seuss to Eric")
       tvBooks.transform(Library.checkOut("Eric", "The Cat In The Hat", tvBorrowers.get, _))
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
@@ -47,12 +47,12 @@ object Main {
       println("Now let's do some BAD stuff...\n")
 
       println("Add a borrower that already exists (total.Borrower('Jim', 3))")
-      tvBorrowers.transform(Library.addBorrower(Borrower("Jim", 3), _))
+      tvBorrowers.transform(Library.addItem(Borrower("Jim", 3), _))
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
       println("Add a book that already exists (total.Book('War And Peace', 'Tolstoy', None))")
-      tvBooks.transform(Library.addBook(Book("War And Peace", "Tolstoy", None), _))
+      tvBooks.transform(Library.addItem(Book("War And Peace", "Tolstoy", None), _))
       println("No change to Test Library:")
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
@@ -77,7 +77,7 @@ object Main {
       println("Lets read in a new library from \"borrowers-before.json\" and \"books-before.json\":")
       newV(tvBooks, tvBorrowers, jsonBorrowersFileBefore, jsonBooksFile)
       println("Add... a new borrower:")
-      tvBorrowers.transform(Library.addBorrower(Borrower("BorrowerNew", 300), _))
+      tvBorrowers.transform(Library.addItem(Borrower("BorrowerNew", 300), _))
       println(Library.statusToString(tvBooks.get, tvBorrowers.get))
 
       println("Save the revised borrowers to \"borrowers-after.json\"")

@@ -23,14 +23,12 @@ class LibrarySpec extends FlatSpec with Matchers {
   val ss = "\n--- Status Report of Test Library ---\n\nTest Library: 3 books; 3 borrowers.\n\nTitle3 by Author3; Checked out to Borrower3\nTitle1 by Author1; Checked out to Borrower1\nTitle2 by Author2; Available\n\nBorrower3 (3 books)\nBorrower1 (1 books)\nBorrower2 (2 books)\n\n--- End of Status Report ---\n"
 
 
-  "A Library" should "add a Borrower correctly" in {
-    Library.addBorrower(br3, brs1) should be(brs2)
-    Library.addBorrower(br2, brs1) should be(brs1)
-  }
+  "A Library" should "add a Borrower or Book correctly" in {
+    Library.addItem(br3, brs1) should be(brs2)
+    Library.addItem(br2, brs1) should be(brs1)
 
-  it should "add a Book correctly" in {
-    Library.addBook(bk3, bks1) should be(bks2)
-    Library.addBook(bk2, bks1) should be(bks1)
+    Library.addItem(bk3, bks1) should be(bks2)
+    Library.addItem(bk2, bks1) should be(bks1)
   }
 
   it should "remove a Book correctly" in {

@@ -4,19 +4,19 @@ import spray.json._
 
 object Library extends DefaultJsonProtocol with NullOptions {
 
-  def addBorrower(br: Borrower, brs: Borrowers): Borrowers = {
-    if (brs.contains(br))
-      brs
-    else
-      br :: brs
-  }
+  //  def addBorrower(br: Borrower, brs: Borrowers): Borrowers = {
+  //    if (brs.contains(br))
+  //      brs
+  //    else
+  //      br :: brs
+  //  }
 
-  def addBook(bk: Book, bks: Books): Books = {
-    if (bks.contains(bk))
-      bks
-    else
-      bk :: bks
-  }
+  //  def addBook(bk: Book, bks: Books): Books = {
+  //    if (bks.contains(bk))
+  //      bks
+  //    else
+  //      bk :: bks
+  //  }
 
   def addItem[A](x: A, xs: List[A]): List[A] = {
     if (xs.contains(x))
@@ -69,7 +69,7 @@ object Library extends DefaultJsonProtocol with NullOptions {
     if (mbk.isDefined && mbr.isDefined && notMaxedOut(mbr.get, bks) && bookNotOut(mbk.get)) {
       val newBook = Book.setBorrower(mbr, mbk.get)
       val fewerBooks = removeBook(mbk.get, bks)
-      addBook(newBook, fewerBooks)
+      addItem(newBook, fewerBooks)
     } else bks
   }
 
@@ -79,7 +79,7 @@ object Library extends DefaultJsonProtocol with NullOptions {
     if (mbk.isDefined && bookOut(mbk.get)) {
       val newBook = Book.setBorrower(None, mbk.get)
       val fewerBooks = removeBook(mbk.get, bks)
-      addBook(newBook, fewerBooks)
+      addItem(newBook, fewerBooks)
     } else bks
   }
 
