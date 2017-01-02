@@ -22,7 +22,6 @@ class LibrarySpec extends FlatSpec with Matchers {
 
   val ss = "\n--- Status Report of Test Library ---\n\nTest Library: 3 books; 3 borrowers.\n\nTitle3 by Author3; Checked out to Borrower3\nTitle1 by Author1; Checked out to Borrower1\nTitle2 by Author2; Available\n\nBorrower3 (3 books)\nBorrower1 (1 books)\nBorrower2 (2 books)\n\n--- End of Status Report ---\n"
 
-
   "A Library" should "add a Borrower or Book correctly" in {
     Library.addItem(br3, brs1) should be(brs2)
     Library.addItem(br2, brs1) should be(brs1)
@@ -81,7 +80,6 @@ class LibrarySpec extends FlatSpec with Matchers {
     Library.jsonStringToBooks(Right("[{\"titleX\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]")) should
       be(Left("JSON parse error."))
   }
-
 
   it should "report read file errors" in {
     val s = Main.readFileIntoJsonString("noFile.json")
