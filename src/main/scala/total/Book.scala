@@ -26,7 +26,7 @@ object Book extends DefaultJsonProtocol with NullOptions {
       " by " + getAuthor(bk) +
       "; " + availableString(bk)
 
-  implicit val bookFormat = jsonFormat3(Book.apply)
+  implicit val bookFormat: RootJsonFormat[Book] = jsonFormat3(Book.apply)
 
 }
 

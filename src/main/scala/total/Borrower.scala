@@ -17,7 +17,7 @@ object Borrower extends DefaultJsonProtocol {
   def borrowerToString(br: Borrower): String =
     getName(br) + " (" + getMaxBooks(br).toString + " books)"
 
-  implicit val borrowerFormat = jsonFormat2(Borrower.apply)
+  implicit val borrowerFormat: RootJsonFormat[Borrower] = jsonFormat2(Borrower.apply)
 
 }
 

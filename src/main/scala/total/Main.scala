@@ -125,7 +125,7 @@ object Main {
       bufferedSource.close
       Right(js)
     } catch {
-      case e: Exception => Left("File read error.")
+      case _: Exception => Left("File read error.")
     }
 
 

@@ -65,7 +65,7 @@ object Library extends DefaultJsonProtocol with NullOptions {
         try {
           Right(r.parseJson.convertTo[Borrowers])
         } catch {
-          case e: Exception =>
+          case _: Exception =>
             Left("JSON parse error.")
         }
       case Left(l) =>
@@ -79,7 +79,7 @@ object Library extends DefaultJsonProtocol with NullOptions {
         try {
           Right(r.parseJson.convertTo[Books])
         } catch {
-          case e: Exception =>
+          case _: Exception =>
             Left("JSON parse error.")
         }
       case Left(l) =>
