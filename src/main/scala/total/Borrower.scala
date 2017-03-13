@@ -20,6 +20,3 @@ object Borrower extends DefaultJsonProtocol {
   implicit val borrowerFormat: RootJsonFormat[Borrower] = jsonFormat2(Borrower.apply)
 
 }
-
-// :paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/total/Borrower.scala
-// val br1 = total.Borrower("Borrower1", 1)
