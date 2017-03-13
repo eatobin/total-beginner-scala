@@ -16,7 +16,7 @@ class BookSpec extends FlatSpec with Matchers {
     Book.getBorrower(bk2) should be(None)
   }
 
-  it should "set a new total.Borrower" in {
+  it should "set a new Borrower" in {
     Book.setBorrower(br2, bk2) should be(bk3)
   }
 
