@@ -17,7 +17,8 @@ object Book extends DefaultJsonProtocol with NullOptions {
   def availableString(bk: Book): String = {
     getBorrower(bk) match {
       case None => "Available"
-      case Some(br) => "Checked out to " + Borrower.getName(br)
+      case Some(br) => "Checked out to " +
+        Borrower.getName(br)
     }
   }
 
@@ -29,7 +30,3 @@ object Book extends DefaultJsonProtocol with NullOptions {
   implicit val bookFormat: RootJsonFormat[Book] = jsonFormat3(Book.apply)
 
 }
-
-// :paste /home/eric/scala_projects/total-beginner-scala/src/main/scala/total/Book.scala
-// val bk1 = total.Book("Title1", "Author1", Some(total.Borrower("Borrower1", 1)))
-// val bk2 = total.Book("Title2", "Author2", None)
