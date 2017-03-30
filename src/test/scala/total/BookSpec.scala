@@ -15,12 +15,12 @@ class BookSpec extends FlatSpec with Matchers {
     Book.getBorrower(bk2) should be(Some(br2))
   }
 
-  //  it should "return a string \"Title1 by Author1; Checked out to Borrower1\"" in {
-  //    Book.bookToString(bk1) should be("Title1 by Author1; Checked out to Borrower1")
-  //  }
-  //
-  //  it should "return a string \"Title2 by Author2; Available\"" in {
-  //    Book.bookToString(bk2) should be("Title2 by Author2; Available")
-  //  }
+  it should "return a string \"Title1 by Author1; Checked out to Borrower1\"" in {
+    Book.bookToString(bk1) should be("Title1 by Author1; Available")
+  }
+
+  it should "return a string \"Title1 by Author1; Checked out to Borrower2\"" in {
+    Book.bookToString(bk2) should be("Title1 by Author1; Checked out to Borrower2")
+  }
 
 }
