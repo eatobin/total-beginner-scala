@@ -1,26 +1,29 @@
 package total
 
-import org.scalatest._
+import org.junit.runner.RunWith
+import org.scalatest.FlatSpec
+import org.scalatest.junit.JUnitRunner
 
-class BookSpec extends FlatSpec with Matchers {
+@RunWith(classOf[JUnitRunner])
+class BookSpec extends FlatSpec {
 
   val br2: Borrower = Borrower.makeBorrower("Borrower2", 2)
   val bk1: Book = Book.makeBook("Title1", "Author1")
   val bk2: Book = Book.setBorrower(Some(br2), bk1)
 
   "A Book" should "create itself properly" in {
-    Book.getTitle(bk1) should be("Title1")
-    Book.getAuthor(bk1) should be("Author1")
-    Book.getBorrower(bk1) should be(None)
-    Book.getBorrower(bk2) should be(Some(br2))
+    assert(Book.getTitle(bk1) == "Title1")
+    assert(Book.getAuthor(bk1) == "Author1")
+    assert(Book.getBorrower(bk1).isEmpty)
+    assert(Book.getBorrower(bk2).contains(br2))
   }
 
   it should "return a string \"Title1 by Author1; Checked out to Borrower1\"" in {
-    Book.bookToString(bk1) should be("Title1 by Author1; Available")
+    assert(Book.bookToString(bk1) == "Title1 by Author1; Available")
   }
 
   it should "return a string \"Title1 by Author1; Checked out to Borrower2\"" in {
-    Book.bookToString(bk2) should be("Title1 by Author1; Checked out to Borrower2")
+    assert(Book.bookToString(bk2) == "Title1 by Author1; Checked out to Borrower2")
   }
 
 }
