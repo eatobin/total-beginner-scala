@@ -8,7 +8,7 @@ import org.scalatest.junit.JUnitRunner
 class BookSpec extends FlatSpec {
 
   val br2: Borrower = Borrower.makeBorrower("Borrower2", 2)
-  val bk1: Book = Book.makeBook("Title1", "Author1")
+  val bk1: Book = Book.makeBook("Title1", "Author1", None)
   val bk2: Book = Book.setBorrower(Some(br2), bk1)
 
   "A Book" should "create itself properly" in {

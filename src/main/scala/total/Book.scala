@@ -6,7 +6,7 @@ case class Book(title: Title, author: Author, borrower: Option[Borrower])
 
 object Book extends DefaultJsonProtocol with NullOptions {
 
-  def makeBook(t: Title, a: Author): Book = Book(title = t, author = a, borrower = None)
+  def makeBook(t: Title, a: Author, b: Option[Borrower]) = Book(title = t, author = a, borrower = b)
 
   def getTitle(bk: Book): Title = bk.title
 
