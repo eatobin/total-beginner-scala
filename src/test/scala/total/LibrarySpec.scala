@@ -88,8 +88,8 @@ class LibrarySpec extends FlatSpec {
   }
 
   it should "convert objects to json strings" in {
-    assert(Library.borrowersToJsonString(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))) == "[{\"name\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]")
-    assert(Library.booksToJsonString(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None))) == "[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]")
+    assert(Library.borrowersToJsonString(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))) == jsonStringBorrowers)
+    assert(Library.booksToJsonString(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None))) == jsonStringBooks)
   }
 
   it should "print out a Status report" in {
