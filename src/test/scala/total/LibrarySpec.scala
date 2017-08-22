@@ -83,8 +83,10 @@ class LibrarySpec extends FlatSpec {
   }
 
   it should "report read file errors" in {
-    val s = Main.readFileIntoJsonString("noFile.json")
-    assert(Library.jsonStringToBorrowers(s) == Left("File read error."))
+    val s1 = Main.readFileIntoJsonString("noFile.json")
+    assert(Library.jsonStringToBorrowers(s1) == Left("File read error."))
+    val s2 = Main.readFileIntoJsonString("empty.json")
+    assert(Library.jsonStringToBorrowers(s2) == Right(List()))
   }
 
   it should "convert objects to json strings" in {
