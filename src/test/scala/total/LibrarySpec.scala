@@ -27,6 +27,7 @@ class LibrarySpec extends FlatSpec {
   val jsonStringBooks = "[{\"title\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]"
   val jsonStringBorrowersBad = "[{\"nameX\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]"
   val jsonStringBooksBad = "[{\"titleX\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]"
+  val jsonStringBorrowersBad2 = "[{\"name\"\"Borrower1\",\"max-books\":1},{\"name\":\"Borrower2\",\"max-books\":2}]"
 
   val ss = "\n--- Status Report of Test Library ---\n\nTest Library: 3 books; 3 borrowers.\n\nTitle3 by Author3; Checked out to Borrower3\nTitle1 by Author1; Checked out to Borrower1\nTitle2 by Author2; Available\n\nBorrower3 (3 books)\nBorrower1 (1 books)\nBorrower2 (2 books)\n\n--- End of Status Report ---\n"
 
@@ -79,6 +80,7 @@ class LibrarySpec extends FlatSpec {
 
   it should "report json parse errors" in {
     assert(Library.jsonStringToBorrowers(Right(jsonStringBorrowersBad)) == Left("JSON parse error."))
+    assert(Library.jsonStringToBorrowers(Right(jsonStringBorrowersBad2)) == Left("JSON parse error."))
     assert(Library.jsonStringToBooks(Right(jsonStringBooksBad)) == Left("JSON parse error."))
   }
 
