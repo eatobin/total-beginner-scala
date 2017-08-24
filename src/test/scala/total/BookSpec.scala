@@ -1,10 +1,7 @@
 package total
 
-import org.junit.runner.RunWith
 import org.scalatest.FlatSpec
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class BookSpec extends FlatSpec {
 
   val br2: Borrower = Borrower.makeBorrower("Borrower2", 2)

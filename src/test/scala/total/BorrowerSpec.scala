@@ -1,10 +1,7 @@
 package total
 
-import org.junit.runner.RunWith
 import org.scalatest.FlatSpec
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class BorrowerSpec extends FlatSpec {
 
   val br1: Borrower = Borrower.makeBorrower("Borrower1", 1)
