@@ -11,12 +11,8 @@ object Library extends DefaultJsonProtocol with NullOptions {
       x :: xs
   }
 
-  def removeBook(bk: Book, bks: Books): Books = {
-    if (bks.contains(bk))
-      bks.filter(_ != bk)
-    else
-      bks
-  }
+  def removeBook(bk: Book, bks: Books): Books =
+    bks.filter(_ != bk)
 
   def findItem[A](tgt: String, coll: List[A], f: (A) => String): Option[A] = {
     val result = coll.filter(item => f(item) == tgt)
