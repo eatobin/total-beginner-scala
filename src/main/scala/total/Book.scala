@@ -25,7 +25,7 @@ object Book extends DefaultJsonProtocol with NullOptions {
   }
 
   def bookToString(bk: Book): String =
-    Book.getTitle(bk) +
+    getTitle(bk) +
       " by " + getAuthor(bk) +
       "; " + availableString(bk)
 
