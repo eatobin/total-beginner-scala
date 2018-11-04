@@ -4,8 +4,8 @@ import org.scalatest.FlatSpec
 
 class BookSpec extends FlatSpec {
 
-  val br2: Borrower = Borrower.makeBorrower("Borrower2", 2)
-  val bk1: Book = Book.makeBook("Title1", "Author1", None)
+  val br2: Borrower = Borrower("Borrower2", 2)
+  val bk1: Book = Book("Title1", "Author1", None)
   val bk2: Book = Book.setBorrower(Some(br2), bk1)
 
   "A Book" should "create itself properly" in {

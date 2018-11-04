@@ -4,7 +4,7 @@ import org.scalatest.FlatSpec
 
 class BorrowerSpec extends FlatSpec {
 
-  val br1: Borrower = Borrower.makeBorrower("Borrower1", 1)
+  val br1: Borrower = Borrower("Borrower1", 1)
 
   "A Borrower of (\"Borrower1\", 1)" should "create itself properly" in {
     assert(Borrower.getName(br1) == "Borrower1")

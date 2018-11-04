@@ -6,8 +6,6 @@ case class Borrower(name: Name, maxBooks: MaxBooks)
 
 object Borrower extends DefaultJsonProtocol {
 
-  def makeBorrower(n: Name, mb: MaxBooks): Borrower = Borrower(name = n, maxBooks = mb)
-
   def getName(br: Borrower): Name = br.name
 
   def setName(n: Name, br: Borrower): Borrower = br.copy(name = n)
