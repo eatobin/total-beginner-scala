@@ -1,6 +1,8 @@
 package total
 
 import org.scalatest.FlatSpec
+import total.Book._
+import total.Borrower._
 
 class LibrarySpec extends FlatSpec {
 
@@ -42,11 +44,11 @@ class LibrarySpec extends FlatSpec {
   }
 
   it should "find a Book or Borrower correctly" in {
-    assert(Library.findItem("Title1", bks2, Book.getTitle).contains(bk1))
-    assert(Library.findItem("Title11", bks2, Book.getTitle).isEmpty)
+    assert(Library.findItem("Title1", bks2, getTitle).contains(bk1))
+    assert(Library.findItem("Title11", bks2, getTitle).isEmpty)
 
-    assert(Library.findItem("Borrower1", brs2, Borrower.getName).contains(br1))
-    assert(Library.findItem("Borrower11", brs2, Borrower.getName).isEmpty)
+    assert(Library.findItem("Borrower1", brs2, getName).contains(br1))
+    assert(Library.findItem("Borrower11", brs2, getName).isEmpty)
   }
 
   it should "find Books for a Borrower" in {
