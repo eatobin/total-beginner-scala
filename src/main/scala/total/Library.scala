@@ -1,6 +1,8 @@
 package total
 
 import spray.json._
+import total.Book._
+import total.Borrower._
 
 object Library extends DefaultJsonProtocol with NullOptions {
 
@@ -20,36 +22,36 @@ object Library extends DefaultJsonProtocol with NullOptions {
   }
 
   def getBooksForBorrower(br: Borrower, bks: Books): Books =
-    bks.filter(bk => Book.getBorrower(bk).contains(br))
+    bks.filter(bk => getBorrower(bk).contains(br))
 
   def numBooksOut(br: Borrower, bks: Books): Int =
     getBooksForBorrower(br, bks).length
 
   def notMaxedOut(br: Borrower, bks: Books): Boolean =
-    numBooksOut(br, bks) < Borrower.getMaxBooks(br)
+    numBooksOut(br, bks) < getMaxBooks(br)
 
   def bookNotOut(bk: Book): Boolean =
-    Book.getBorrower(bk).isEmpty
+    getBorrower(bk).isEmpty
 
   def bookOut(bk: Book): Boolean =
-    Book.getBorrower(bk).isDefined
+    getBorrower(bk).isDefined
 
   def checkOut(n: Name, t: Title, brs: Borrowers, bks: Books): Books = {
-    val mbk = findItem(t, bks, Book.getTitle)
-    val mbr = findItem(n, brs, Borrower.getName)
+    val mbk = findItem(t, bks, getTitle)
+    val mbr = findItem(n, brs, getName)
 
     if (mbk.isDefined && mbr.isDefined && notMaxedOut(mbr.get, bks) && bookNotOut(mbk.get)) {
-      val newBook = Book.setBorrower(mbr, mbk.get)
+      val newBook = setBorrower(mbr, mbk.get)
       val fewerBooks = removeBook(mbk.get, bks)
       addItem(newBook, fewerBooks)
     } else bks
   }
 
   def checkIn(t: Title, bks: Books): Books = {
-    val mbk = findItem(t, bks, Book.getTitle)
+    val mbk = findItem(t, bks, getTitle)
 
     if (mbk.isDefined && bookOut(mbk.get)) {
-      val newBook = Book.setBorrower(None, mbk.get)
+      val newBook = setBorrower(None, mbk.get)
       val fewerBooks = removeBook(mbk.get, bks)
       addItem(newBook, fewerBooks)
     } else bks
@@ -97,8 +99,8 @@ object Library extends DefaultJsonProtocol with NullOptions {
   def statusToString(bks: Books, brs: Borrowers): String =
     "\n--- Status Report of Test Library ---\n\n" +
       libraryToString(bks, brs) + "\n\n" +
-      bks.map(bk => Book.bookToString(bk)).mkString("\n") + "\n\n" +
-      brs.map(br => Borrower.borrowerToString(br)).mkString("\n") + "\n\n" +
+      bks.map(bk => bookToString(bk)).mkString("\n") + "\n\n" +
+      brs.map(br => borrowerToString(br)).mkString("\n") + "\n\n" +
       "--- End of Status Report ---\n"
 
 }
