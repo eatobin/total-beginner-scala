@@ -2,7 +2,7 @@ package total
 
 import spray.json._
 
-case class Book(title: Title, author: Author, borrower: Option[Borrower])
+case class Book(title: Title, author: Author, borrower: Option[Borrower] = None)
 
 object Book extends DefaultJsonProtocol with NullOptions {
 

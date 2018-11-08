@@ -8,15 +8,17 @@ class BookSpec extends FlatSpec {
   val br2: Borrower = Borrower("Borrower2", 2)
   val bk1: Book = Book("Title1", "Author1", None)
   val bk2: Book = setBorrower(Some(br2), bk1)
+  val bk3: Book = Book("Title3", "Author3")
 
   "A Book" should "create itself properly" in {
     assert(getTitle(bk1) == "Title1")
     assert(getAuthor(bk1) == "Author1")
     assert(getBorrower(bk1).isEmpty)
     assert(getBorrower(bk2).contains(br2))
+    assert(getBorrower(bk3).isEmpty)
   }
 
-  it should "return a string \"Title1 by Author1; Checked out to Borrower1\"" in {
+  it should "return a string \"Title1 by Author1; Available\"" in {
     assert(bookToString(bk1) == "Title1 by Author1; Available")
   }
 

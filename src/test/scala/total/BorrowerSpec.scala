@@ -7,7 +7,7 @@ class BorrowerSpec extends FlatSpec {
 
   val br1: Borrower = Borrower("Borrower1", 1)
 
-  "A Borrower of (\"Borrower1\", 1)" should "create itself properly" in {
+  "A Borrower" should "create itself properly" in {
     assert(getName(br1) == "Borrower1")
     assert(getMaxBooks(br1) == 1)
   }
