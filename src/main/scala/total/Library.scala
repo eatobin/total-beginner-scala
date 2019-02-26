@@ -86,10 +86,10 @@ object Library extends DefaultJsonProtocol with NullOptions {
   }
 
   def borrowersToJsonString(brs: Borrowers): JsonString =
-    brs.toJson.compactPrint
+    brs.toJson.sortedPrint
 
   def booksToJsonString(bks: Books): JsonString =
-    bks.toJson.compactPrint
+    bks.toJson.sortedPrint
 
   def libraryToString(bks: Books, brs: Borrowers): String =
     "Test Library: " +
