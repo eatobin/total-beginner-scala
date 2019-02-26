@@ -1,0 +1,5 @@
+sbt new sbt/scala-seed.g8
+
+see:
+
+https://github.com/sbt/scala-seed.g8
