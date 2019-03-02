@@ -1,5 +1,7 @@
-import org.scalacheck.Properties
+package total
+
 import org.scalacheck.Prop.forAll
+import org.scalacheck.Properties
 
 object StringSpecification extends Properties("String") {
 
