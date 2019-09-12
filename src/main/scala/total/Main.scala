@@ -84,7 +84,7 @@ object Main {
 
       println("Save the revised borrowers to \"borrowers-after.json\"")
       val jsonBrsStr = borrowersToJsonString(tvBorrowers.get)
-      writeJsonStringToFile(jsonBrsStr, "borrowers-after.json")
+      writeJsonStringToFile(jsonBrsStr)
 
       println("Clear the whole library again:")
       newEmptyV(tvBooks, tvBorrowers)
@@ -96,11 +96,11 @@ object Main {
       new File(jsonBorrowersFileAfter).delete()
       newEmptyV(tvBooks, tvBorrowers)
 
-      println("Then try to make a library using the deleted \"borrowers-after.json\" and \"borrowers-after.json\":")
-      newV(tvBooks, tvBorrowers, jsonBorrowersFileAfter, jsonBorrowersFileAfter)
+      println("Then try to make a library using the deleted \"borrowers-after.json\" and \"books-before.json\":")
+      newV(tvBooks, tvBorrowers, jsonBorrowersFileAfter, jsonBooksFile)
 
-      println("And if we read in a file with mal-formed json content... like \"bad-borrowers.json\" and \"borrowers-after.json\":")
-      newV(tvBooks, tvBorrowers, jsonBorrowersFileBad, jsonBorrowersFileAfter)
+      println("And if we read in a file with mal-formed json content... like \"bad-borrowers.json\" and \"books-before.json\":")
+      newV(tvBooks, tvBorrowers, jsonBorrowersFileBad, jsonBooksFile)
 
       println("Or how about reading in an empty file... \"empty.json\" (for borrowers and books):")
       newV(tvBooks, tvBorrowers, emptyFile, emptyFile)
@@ -127,12 +127,12 @@ object Main {
       bufferedSource.close
       Right(js)
     } catch {
-      case _: Exception => Left("File read error.")
+      case _: Exception => Left("File read error. File: " ++ fp ++ " does not exist.")
     }
 
 
-  def writeJsonStringToFile(js: JsonString, fp: FilePath): Unit = {
-    val file = new File(fp)
+  def writeJsonStringToFile(js: JsonString): Unit = {
+    val file = new File("borrowers-after.json")
     val bw = new BufferedWriter(new FileWriter(file))
     bw.write(js)
     bw.close()
