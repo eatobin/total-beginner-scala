@@ -11,17 +11,17 @@ class LibrarySpec extends FlatSpec {
   val br2 = Borrower("Borrower2", 2)
   val br3 = Borrower("Borrower3", 3)
 
-  val brs1 = List(br1, br2)
-  val brs2 = List(br3, br1, br2)
+  val brs1: List[Borrower] = List(br1, br2)
+  val brs2: List[Borrower] = List(br3, br1, br2)
 
   val bk1 = Book("Title1", "Author1", Some(br1))
   val bk2 = Book("Title2", "Author2", None)
   val bk3 = Book("Title3", "Author3", Some(br3))
   val bk4 = Book("Title4", "Author4", Some(Borrower("Borrower3", 3)))
 
-  val bks1 = List(bk1, bk2)
-  val bks2 = List(bk3, bk1, bk2)
-  val bks3 = List(bk1, bk2, bk3, bk4)
+  val bks1: List[Book] = List(bk1, bk2)
+  val bks2: List[Book] = List(bk3, bk1, bk2)
+  val bks3: List[Book] = List(bk1, bk2, bk3, bk4)
 
   val jsonStringBorrowers = "[{\n  \"maxBooks\": 1,\n  \"name\": \"Borrower1\"\n}, {\n  \"maxBooks\": 2,\n  \"name\": \"Borrower2\"\n}]"
   val jsonStringBooks = "[{\n  \"author\": \"Author22\",\n  \"borrower\": null,\n  \"title\": \"Title2\"\n}, {\n  \"author\": \"Author99\",\n  \"borrower\": null,\n  \"title\": \"Title99\"\n}]"
