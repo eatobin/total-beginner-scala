@@ -4,7 +4,7 @@ import spray.json._
 import total.Book._
 import total.Borrower._
 
-object Library extends DefaultJsonProtocol with NullOptions {
+object Library {
 
   def addItem[A](x: A, xs: List[A]): List[A] = {
     if (xs.contains(x))
