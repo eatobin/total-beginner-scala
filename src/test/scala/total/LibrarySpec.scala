@@ -7,17 +7,17 @@ import total.Library._
 
 class LibrarySpec extends FlatSpec {
 
-  val br1 = Borrower("Borrower1", 1)
-  val br2 = Borrower("Borrower2", 2)
-  val br3 = Borrower("Borrower3", 3)
+  val br1: Borrower = Borrower("Borrower1", 1)
+  val br2: Borrower = Borrower("Borrower2", 2)
+  val br3: Borrower = Borrower("Borrower3", 3)
 
   val brs1: List[Borrower] = List(br1, br2)
   val brs2: List[Borrower] = List(br3, br1, br2)
 
-  val bk1 = Book("Title1", "Author1", Some(br1))
-  val bk2 = Book("Title2", "Author2", None)
-  val bk3 = Book("Title3", "Author3", Some(br3))
-  val bk4 = Book("Title4", "Author4", Some(Borrower("Borrower3", 3)))
+  val bk1: Book = Book("Title1", "Author1", Some(br1))
+  val bk2: Book = Book("Title2", "Author2", None)
+  val bk3: Book = Book("Title3", "Author3", Some(br3))
+  val bk4: Book = Book("Title4", "Author4", Some(Borrower("Borrower3", 3)))
 
   val bks1: List[Book] = List(bk1, bk2)
   val bks2: List[Book] = List(bk3, bk1, bk2)
