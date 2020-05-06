@@ -1,11 +1,11 @@
 package total
 
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 import total.Book._
 import total.Borrower._
 import total.Library._
 
-class LibrarySpec extends FlatSpec {
+class LibrarySpec extends AnyFlatSpec {
 
   val br1: Borrower = Borrower("Borrower1", 1)
   val br2: Borrower = Borrower("Borrower2", 2)
