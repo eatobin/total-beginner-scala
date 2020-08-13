@@ -7,6 +7,7 @@ import total.Library._
 import scala.concurrent.stm._
 import scala.io.Source
 
+//noinspection DuplicatedCode,DuplicatedCode
 object Main {
 
   val tvBorrowers: Ref[List[Borrower]] = Ref(List())
