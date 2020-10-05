@@ -6,7 +6,7 @@ ThisBuild / useCoursier := false
 
 lazy val root = (project in file("."))
   .settings(
-    name := "total-beginner-scala",
+    name := "total",
     libraryDependencies ++= Seq(
       "org.scalatest" %% "scalatest" % "3.1.2" % "test",
       "io.spray" %% "spray-json" % "1.3.5",
