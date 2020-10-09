@@ -124,7 +124,7 @@ object Main {
   def readFileIntoJsonString(fp: FilePath): Either[ErrorString, JsonString] =
     try {
       val bufferedSource = Source.fromFile(fp)
-      val js = bufferedSource.getLines.mkString
+      val js = bufferedSource.getLines().mkString
       bufferedSource.close
       Right(js)
     } catch {
