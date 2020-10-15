@@ -13,11 +13,11 @@ object Main {
   val tvBorrowers: Ref[List[Borrower]] = Ref(List())
   val tvBooks: Ref[List[Book]] = Ref(List())
 
-  val jsonBorrowersFileBefore = "/home/eric/scala_projects/total/src/main/resources/borrowers-before.json"
-  val jsonBooksFile = "/home/eric/scala_projects/total/src/main/resources/books-before.json"
-  val jsonBorrowersFileAfter = "/home/eric/scala_projects/total/src/main/resources/borrowers-after.json"
-  val jsonBorrowersFileBad = "/home/eric/scala_projects/total/src/main/resources/bad-borrowers.json"
-  val emptyFile = "/home/eric/scala_projects/total/src/main/resources/empty.json"
+  val jsonBorrowersFileBefore = "src/main/resources/borrowers-before.json"
+  val jsonBooksFile = "src/main/resources/books-before.json"
+  val jsonBorrowersFileAfter = "src/main/resources/borrowers-after.json"
+  val jsonBorrowersFileBad = "src/main/resources/bad-borrowers.json"
+  val emptyFile = "src/main/resources/resources/empty.json"
 
   def main(args: Array[String]): Unit = {
 
@@ -133,7 +133,7 @@ object Main {
 
 
   def writeJsonStringToFile(js: JsonString): Unit = {
-    val file = new File("/home/eric/scala_projects/total/src/main/resources/borrowers-after.json")
+    val file = new File("src/main/resources/borrowers-after.json")
     val bw = new BufferedWriter(new FileWriter(file))
     bw.write(js)
     bw.close()
