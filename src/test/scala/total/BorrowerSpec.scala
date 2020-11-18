@@ -9,7 +9,9 @@ class BorrowerSpec extends AnyFlatSpec {
 
   "A Borrower" should "create itself properly" in {
     assert(getName(br1) == "Borrower1")
+    assert(br1.name == "Borrower1")
     assert(getMaxBooks(br1) == 1)
+    assert(br1.maxBooks == 1)
   }
 
   it should "set a new name and maxBooks" in {
