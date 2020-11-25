@@ -27,6 +27,8 @@ object Book extends DefaultJsonProtocol with NullOptions {
       " by " + getAuthor(bk) +
       "; " + availableString(bk)
 
+  def bookJsonStringToBorrower(bookString: String): Book = bookString.parseJson.convertTo[Book]
+
   implicit val bookFormat: RootJsonFormat[Book] = jsonFormat3(Book.apply)
 
 }
