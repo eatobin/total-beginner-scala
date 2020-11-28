@@ -121,14 +121,15 @@ object Main {
     }
   }
 
-  def readFileIntoJsonString(fp: FilePath): Either[ErrorString, JsonString] =
+  def readFileIntoJsonString(fp: String): Either[ErrorString, JsonString] =
     try {
       val bufferedSource = Source.fromFile(fp)
       val js = bufferedSource.getLines().mkString
       bufferedSource.close
       Right(js)
     } catch {
-      case _: Exception => Left("File read error. File: " ++ fp ++ " does not exist.")
+      case e: Exception =>
+        Left(e.getMessage)
     }
 
 
@@ -139,7 +140,7 @@ object Main {
     bw.close()
   }
 
-  def newV(tvBooks: Ref[List[Book]], tvBorrowers: Ref[List[Borrower]], brsfp: FilePath, bksfp: FilePath): Unit = {
+  def newV(tvBooks: Ref[List[Book]], tvBorrowers: Ref[List[Borrower]], brsfp: String, bksfp: String): Unit = {
     val jsonBrsStr = Main.readFileIntoJsonString(brsfp)
     val jsonBksStr = Main.readFileIntoJsonString(bksfp)
     val brs = jsonStringToBorrowers(jsonBrsStr)

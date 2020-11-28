@@ -13,7 +13,7 @@ object Library {
       x :: xs
   }
 
-  def removeBook(bk: Book, bks: Books): Books =
+  def removeBook(bk: Book, bks: List[Book]): List[Book] =
     bks.filter(_ != bk)
 
   def findItem[A](tgt: String, coll: List[A], f: A => String): Option[A] = {
@@ -21,13 +21,13 @@ object Library {
     result.headOption
   }
 
-  def getBooksForBorrower(br: Borrower, bks: Books): Books =
+  def getBooksForBorrower(br: Borrower, bks: List[Book]): List[Book] =
     bks.filter(bk => getBorrower(bk).contains(br))
 
-  def numBooksOut(br: Borrower, bks: Books): Int =
+  def numBooksOut(br: Borrower, bks: List[Book]): Int =
     getBooksForBorrower(br, bks).length
 
-  def notMaxedOut(br: Borrower, bks: Books): Boolean =
+  def notMaxedOut(br: Borrower, bks: List[Book]): Boolean =
     numBooksOut(br, bks) < getMaxBooks(br)
 
   def bookNotOut(bk: Book): Boolean =
@@ -36,7 +36,7 @@ object Library {
   def bookOut(bk: Book): Boolean =
     getBorrower(bk).isDefined
 
-  def checkOut(n: Name, t: Title, brs: Borrowers, bks: Books): Books = {
+  def checkOut(n: String, t: String, brs: List[Borrower], bks: List[Book]): List[Book] = {
     val mbk = findItem(t, bks, getTitle)
     val mbr = findItem(n, brs, getName)
 
@@ -47,7 +47,7 @@ object Library {
     } else bks
   }
 
-  def checkIn(t: Title, bks: Books): Books = {
+  def checkIn(t: String, bks: List[Book]): List[Book] = {
     val mbk = findItem(t, bks, getTitle)
 
     if (mbk.isDefined && bookOut(mbk.get)) {
@@ -57,11 +57,11 @@ object Library {
     } else bks
   }
 
-  def jsonStringToBorrowers(s: Either[ErrorString, JsonString]): Either[ErrorString, Borrowers] = {
+  def jsonStringToBorrowers(s: Either[ErrorString, JsonString]): Either[ErrorString, List[Borrower]] = {
     s match {
       case Right(r) =>
         try {
-          Right(r.parseJson.convertTo[Borrowers])
+          Right(r.parseJson.convertTo[List[Borrower]])
         } catch {
           case _: Exception =>
             Left("JSON parse error.")
@@ -71,11 +71,11 @@ object Library {
     }
   }
 
-  def jsonStringToBooks(s: Either[ErrorString, JsonString]): Either[ErrorString, Books] = {
+  def jsonStringToBooks(s: Either[ErrorString, JsonString]): Either[ErrorString, List[Book]] = {
     s match {
       case Right(r) =>
         try {
-          Right(r.parseJson.convertTo[Books])
+          Right(r.parseJson.convertTo[List[Book]])
         } catch {
           case _: Exception =>
             Left("JSON parse error.")
@@ -85,18 +85,18 @@ object Library {
     }
   }
 
-  def borrowersToJsonString(brs: Borrowers): JsonString =
+  def borrowersToJsonString(brs: List[Borrower]): JsonString =
     brs.toJson.sortedPrint
 
-  def booksToJsonString(bks: Books): JsonString =
+  def booksToJsonString(bks: List[Book]): JsonString =
     bks.toJson.sortedPrint
 
-  def libraryToString(bks: Books, brs: Borrowers): String =
+  def libraryToString(bks: List[Book], brs: List[Borrower]): String =
     "Test Library: " +
       bks.length.toString + " books; " +
       brs.length.toString + " borrowers."
 
-  def statusToString(bks: Books, brs: Borrowers): String =
+  def statusToString(bks: List[Book], brs: List[Borrower]): String =
     "\n--- Status Report of Test Library ---\n\n" +
       libraryToString(bks, brs) + "\n\n" +
       bks.map(bk => bookToString(bk)).mkString("\n") + "\n\n" +

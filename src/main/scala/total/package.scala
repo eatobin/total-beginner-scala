@@ -1,15 +1,15 @@
 package object total {
 
-  type Name = String
-  type MaxBooks = Int
-
-  type Title = String
-  type Author = String
-
-  type Borrowers = List[Borrower]
-  type Books = List[Book]
-
-  type FilePath = String
+//  type String = String
+//  type Int = Int
+//
+//  type String = String
+//  type String = String
+//
+//  type List[Borrower] = List[Borrower]
+//  type List[Book] = List[Book]
+//
+//  type String = String
   type JsonString = String
   type ErrorString = String
 

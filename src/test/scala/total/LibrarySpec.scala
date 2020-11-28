@@ -52,7 +52,7 @@ class LibrarySpec extends AnyFlatSpec {
     assert(findItem("Borrower11", brs2, getName).isEmpty)
   }
 
-  it should "find Books for a Borrower" in {
+  it should "find List[Book] for a Borrower" in {
     assert(getBooksForBorrower(br2, bks1) == List())
     assert(getBooksForBorrower(br1, bks1) == List(bk1))
     assert(getBooksForBorrower(br3, bks3) == List(bk3, bk4))
@@ -86,7 +86,7 @@ class LibrarySpec extends AnyFlatSpec {
 
   it should "report read file errors" in {
     val s1 = Main.readFileIntoJsonString("noFile.json")
-    assert(jsonStringToBorrowers(s1) == Left("File read error. File: noFile.json does not exist."))
+    assert(jsonStringToBorrowers(s1) == Left("noFile.json (No such file or directory)"))
     val s2 = Main.readFileIntoJsonString("src/main/resources/empty.json")
     assert(jsonStringToBorrowers(s2) == Right(List()))
   }

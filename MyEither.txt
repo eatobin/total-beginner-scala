@@ -12,7 +12,7 @@
 // })
 
 val brs = "[{\"name\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]"
-val result: Either[String, total.Borrowers] = try {
+val result: Either[String, total.List[Borrower]] = try {
     Right(total.Library.jsonStringToBorrowers(brs))
   } catch {
     case e: Exception =>
