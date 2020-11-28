@@ -63,8 +63,8 @@ object Library {
         try {
           Right(r.parseJson.convertTo[List[Borrower]])
         } catch {
-          case _: Exception =>
-            Left("JSON parse error.")
+          case e: Exception =>
+            Left(e.getMessage)
         }
       case Left(l) =>
         Left(l)
@@ -77,8 +77,8 @@ object Library {
         try {
           Right(r.parseJson.convertTo[List[Book]])
         } catch {
-          case _: Exception =>
-            Left("JSON parse error.")
+          case e: Exception =>
+            Left(e.getMessage)
         }
       case Left(l) =>
         Left(l)

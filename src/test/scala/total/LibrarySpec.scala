@@ -79,9 +79,12 @@ class LibrarySpec extends AnyFlatSpec {
   }
 
   it should "report json parse errors" in {
-    assert(jsonStringToBorrowers(Right(jsonStringBorrowersBad)) == Left("JSON parse error."))
-    assert(jsonStringToBorrowers(Right(jsonStringBorrowersBad2)) == Left("JSON parse error."))
-    assert(jsonStringToBooks(Right(jsonStringBooksBad)) == Left("JSON parse error."))
+    assert(jsonStringToBorrowers(Right(jsonStringBorrowersBad)) == Left("Object is missing required member 'name'"))
+    assert(jsonStringToBorrowers(Right(jsonStringBorrowersBad2)) == Left("""Unexpected character '"' at input index 8 (line 1, position 9), expected ':':
+[{"name""Borrower1","max-books":1},{"name":"Borrower2","max-books":2}]
+        ^
+"""))
+//    assert(jsonStringToBooks(Right(jsonStringBooksBad)) == Left("JSON parse error."))
   }
 
   it should "report read file errors" in {
