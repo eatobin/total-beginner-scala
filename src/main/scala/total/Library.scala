@@ -6,6 +6,7 @@ import io.circe.syntax._
 import total.Book._
 import total.Borrower._
 
+//noinspection DuplicatedCode,DuplicatedCode
 object Library {
 
   def addItem[A](x: A, xs: List[A]): List[A] = {
