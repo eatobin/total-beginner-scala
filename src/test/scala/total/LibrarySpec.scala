@@ -25,6 +25,7 @@ class LibrarySpec extends AnyFlatSpec {
 
   val jsonStringBorrowers = "[{\n  \"maxBooks\": 1,\n  \"name\": \"Borrower1\"\n}, {\n  \"maxBooks\": 2,\n  \"name\": \"Borrower2\"\n}]"
   val jsonStringBooks = "[{\n  \"author\": \"Author22\",\n  \"borrower\": null,\n  \"title\": \"Title2\"\n}, {\n  \"author\": \"Author99\",\n  \"borrower\": null,\n  \"title\": \"Title99\"\n}]"
+  val jsonStringBooksBorrower = "[{\n  \"author\": \"Author22\",\n  \"borrower\": {\n  \"maxBooks\": 1,\n  \"name\": \"Borrower1\"\n},\n  \"title\": \"Title2\"\n}, {\n  \"author\": \"Author99\",\n  \"borrower\": null,\n  \"title\": \"Title99\"\n}]"
   val jsonStringBorrowersBad = "[{\"nameX\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]"
   val jsonStringBooksBad = "[{\"titleX\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]"
   val jsonStringBorrowersBad2 = "[{\"name\"\"Borrower1\",\"max-books\":1},{\"name\":\"Borrower2\",\"max-books\":2}]"
@@ -81,20 +82,12 @@ class LibrarySpec extends AnyFlatSpec {
   }
 
   it should "report json parse errors" in {
-    val badParse1 = jsonStringToBorrowers(Right(jsonStringBorrowersBad))
-    assert(badParse1 == Left("DecodingFailure(Attempt to decode value on failed cursor, List(DownField(name), DownArray))"))
-    val badParse2 = jsonStringToBorrowers(Right(jsonStringBorrowersBad2))
-    val result2 = badParse2 match {
-      case Left(_) => "Invalid JSON again"
-      case Right(_) => "Yay, got some JSON!"
-    }
-    assert(result2 == "Invalid JSON again")
-    val badParse3 = jsonStringToBooks(Right(jsonStringBooksBad))
-    val result3 = badParse3 match {
-      case Left(_) => "Invalid JSON - yeesh"
-      case Right(_) => "Yay, got some JSON!"
-    }
-    assert(result3 == "Invalid JSON - yeesh")
+    assert(jsonStringToBorrowers(Right(jsonStringBorrowersBad)) ==
+      Left("DecodingFailure(Attempt to decode value on failed cursor, List(DownField(name), DownArray))"))
+    assert(jsonStringToBorrowers(Right(jsonStringBorrowersBad2)) ==
+      Left("""io.circe.ParsingFailure: expected : got '"Borro...' (line 1, column 9)"""))
+    assert(jsonStringToBooks(Right(jsonStringBooksBad)) ==
+      Left("DecodingFailure(Attempt to decode value on failed cursor, List(DownField(title), DownArray))"))
   }
 
   //  it should "report read file errors" in {
