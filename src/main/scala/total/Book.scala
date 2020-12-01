@@ -1,10 +1,12 @@
 package total
 
-import spray.json._
+import io.circe.Error
+import io.circe.generic.auto._
+import io.circe.parser._
 
 case class Book(title: String, author: String, borrower: Option[Borrower] = None)
 
-object Book extends DefaultJsonProtocol with NullOptions {
+object Book {
 
   def getTitle(bk: Book): String = bk.title
 
@@ -27,8 +29,6 @@ object Book extends DefaultJsonProtocol with NullOptions {
       " by " + getAuthor(bk) +
       "; " + availableString(bk)
 
-  def bookJsonStringToBorrower(bookString: String): Book = bookString.parseJson.convertTo[Book]
-
-  implicit val bookFormat: RootJsonFormat[Book] = jsonFormat3(Book.apply)
+  def bookJsonStringToBook(bookString: String): Either[Error, Book] = decode[Book](bookString)
 
 }

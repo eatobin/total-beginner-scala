@@ -1,10 +1,12 @@
 package total
 
-import spray.json._
+import io.circe.Error
+import io.circe.parser._
+import io.circe.generic.auto._
 
 case class Borrower(name: String, maxBooks: Int)
 
-object Borrower extends DefaultJsonProtocol {
+object Borrower {
 
   def getName(br: Borrower): String = br.name
 
@@ -17,8 +19,6 @@ object Borrower extends DefaultJsonProtocol {
   def borrowerToString(br: Borrower): String =
     getName(br) + " (" + getMaxBooks(br).toString + " books)"
 
-  def borrowerJsonStringToBorrower(borrowerString: String): Borrower = borrowerString.parseJson.convertTo[Borrower]
-
-  implicit val borrowerFormat: RootJsonFormat[Borrower] = jsonFormat2(Borrower.apply)
+  def borrowerJsonStringToBorrower(borrowerString: String): Either[Error, Borrower] = decode[Borrower](borrowerString)
 
 }

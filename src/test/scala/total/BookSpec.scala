@@ -2,6 +2,7 @@ package total
 
 import org.scalatest.flatspec.AnyFlatSpec
 import total.Book._
+import io.circe.Error
 
 class BookSpec extends AnyFlatSpec {
 
@@ -29,10 +30,10 @@ class BookSpec extends AnyFlatSpec {
   }
 
   it should "convert from JSON" in {
-    val bkJson1: Book = bookJsonStringToBorrower(jsonStringBk1)
-    assert(bkJson1 == bk1)
-    val bkJson2: Book = bookJsonStringToBorrower(jsonStringBk2)
-    assert(bkJson2 == bk2)
+    val bkJson1: Either[Error, Book] = bookJsonStringToBook(jsonStringBk1)
+    assert(bkJson1 == Right(bk1))
+    val bkJson2: Either[Error, Book] = bookJsonStringToBook(jsonStringBk2)
+    assert(bkJson2 == Right(bk2))
   }
 
 }

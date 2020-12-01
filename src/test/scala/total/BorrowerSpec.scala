@@ -2,6 +2,7 @@ package total
 
 import org.scalatest.flatspec.AnyFlatSpec
 import total.Borrower._
+import io.circe.Error
 
 class BorrowerSpec extends AnyFlatSpec {
 
@@ -25,8 +26,8 @@ class BorrowerSpec extends AnyFlatSpec {
   }
 
   it should "convert from JSON" in {
-    val brJson: Borrower = borrowerJsonStringToBorrower(jsonStringBr)
-    assert(brJson == br1)
+    val brJson: Either[Error, Borrower] = borrowerJsonStringToBorrower(jsonStringBr)
+    assert(brJson == Right(br1))
   }
 
 }

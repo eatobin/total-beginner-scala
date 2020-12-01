@@ -74,18 +74,19 @@ class LibrarySpec extends AnyFlatSpec {
   }
 
   it should "parse json strings to objects" in {
-    assert(jsonStringToBorrowers(Right(jsonStringBorrowers)) == Right(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))))
-    assert(jsonStringToBooks(Right(jsonStringBooks)) == Right(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None))))
+    assert(jsonStringToBorrowers(Right(jsonStringBorrowers)) ==
+      Right(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))))
+    assert(jsonStringToBooks(Right(jsonStringBooks)) ==
+      Right(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None))))
   }
 
   it should "report json parse errors" in {
-    assert(jsonStringToBorrowers(Right(jsonStringBorrowersBad)) == Left("Object is missing required member 'name'"))
-    assert(jsonStringToBorrowers(Right(jsonStringBorrowersBad2)) == Left(
-      """Unexpected character '"' at input index 8 (line 1, position 9), expected ':':
-[{"name""Borrower1","max-books":1},{"name":"Borrower2","max-books":2}]
-        ^
-"""))
-    assert(jsonStringToBooks(Right(jsonStringBooksBad)) == Left("Object is missing required member 'title'"))
+    assert(jsonStringToBorrowers(Right(jsonStringBorrowersBad)) ==
+      Left("missing keys in dictionary: name at index 34"))
+    assert(jsonStringToBorrowers(Right(jsonStringBorrowersBad2)) ==
+      Left("""expected : got " (line 1, column 9) at index 8"""))
+    assert(jsonStringToBooks(Right(jsonStringBooksBad)) ==
+      Left("missing keys in dictionary: title at index 55"))
   }
 
   it should "report read file errors" in {
@@ -96,8 +97,10 @@ class LibrarySpec extends AnyFlatSpec {
   }
 
   it should "convert objects to json strings" in {
-    assert(borrowersToJsonString(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))) == jsonStringBorrowers)
-    assert(booksToJsonString(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None))) == jsonStringBooks)
+    assert(borrowersToJsonString(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))) ==
+      """[{"name":"Borrower1","maxBooks":1},{"name":"Borrower2","maxBooks":2}]""")
+    assert(booksToJsonString(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None))) ==
+      """[{"title":"Title2","author":"Author22"},{"title":"Title99","author":"Author99"}]""")
   }
 
   it should "print out a Status report" in {

@@ -1,6 +1,9 @@
 package total
 
-import spray.json._
+import io.circe._
+import io.circe.generic.auto._
+import io.circe.parser._
+import io.circe.syntax._
 import total.Book._
 import total.Borrower._
 
@@ -57,39 +60,29 @@ object Library {
     } else bks
   }
 
-  def jsonStringToBorrowers(s: Either[ErrorString, JsonString]): Either[ErrorString, List[Borrower]] = {
+  def jsonStringToBorrowers(s: Either[Error, JsonString]): Either[Error, List[Borrower]] = {
     s match {
       case Right(r) =>
-        try {
-          Right(r.parseJson.convertTo[List[Borrower]])
-        } catch {
-          case e: Exception =>
-            Left(e.getMessage)
-        }
+        decode[List[Borrower]](r)
       case Left(l) =>
         Left(l)
     }
   }
 
-  def jsonStringToBooks(s: Either[ErrorString, JsonString]): Either[ErrorString, List[Book]] = {
+  def jsonStringToBooks(s: Either[Error, JsonString]): Either[Error, List[Book]] = {
     s match {
       case Right(r) =>
-        try {
-          Right(r.parseJson.convertTo[List[Book]])
-        } catch {
-          case e: Exception =>
-            Left(e.getMessage)
-        }
+        decode[List[Book]](r)
       case Left(l) =>
         Left(l)
     }
   }
 
   def borrowersToJsonString(brs: List[Borrower]): JsonString =
-    brs.toJson.sortedPrint
+    brs.asJson.noSpaces
 
   def booksToJsonString(bks: List[Book]): JsonString =
-    bks.toJson.sortedPrint
+    bks.asJson.noSpaces
 
   def libraryToString(bks: List[Book], brs: List[Borrower]): String =
     "Test Library: " +
