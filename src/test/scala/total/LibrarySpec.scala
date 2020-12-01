@@ -79,6 +79,8 @@ class LibrarySpec extends AnyFlatSpec {
       Right(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))))
     assert(jsonStringToBooks(Right(jsonStringBooks)) ==
       Right(List(Book("Title2", "Author22", None), Book("Title99", "Author99", None))))
+    assert(jsonStringToBooks(Right(jsonStringBooksBorrower)) ==
+      Right(List(Book("Title2", "Author22", Some(Borrower("Borrower1", 1))), Book("Title99", "Author99", None))))
   }
 
   it should "report json parse errors" in {
