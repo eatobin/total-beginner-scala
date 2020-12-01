@@ -1,6 +1,5 @@
 package total
 
-import io.circe._
 import io.circe.generic.auto._
 import io.circe.parser._
 import io.circe.syntax._
@@ -60,19 +59,27 @@ object Library {
     } else bks
   }
 
-  def jsonStringToBorrowers(s: Either[Error, JsonString]): Either[Error, List[Borrower]] = {
+  def jsonStringToBorrowers(s: Either[ErrorString, JsonString]): Either[ErrorString, List[Borrower]] = {
     s match {
       case Right(r) =>
-        decode[List[Borrower]](r)
+        val result = decode[List[Borrower]](r)
+        result match {
+          case Right(brs) => Right(brs)
+          case Left(e) => Left(e.toString)
+        }
       case Left(l) =>
         Left(l)
     }
   }
 
-  def jsonStringToBooks(s: Either[Error, JsonString]): Either[Error, List[Book]] = {
+  def jsonStringToBooks(s: Either[ErrorString, JsonString]): Either[ErrorString, List[Book]] = {
     s match {
       case Right(r) =>
-        decode[List[Book]](r)
+        val result = decode[List[Book]](r)
+        result match {
+          case Right(bks) => Right(bks)
+          case Left(e) => Left(e.toString)
+        }
       case Left(l) =>
         Left(l)
     }

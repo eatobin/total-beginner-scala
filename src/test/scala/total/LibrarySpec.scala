@@ -82,11 +82,7 @@ class LibrarySpec extends AnyFlatSpec {
 
   it should "report json parse errors" in {
     val badParse1 = jsonStringToBorrowers(Right(jsonStringBorrowersBad))
-    val result1 = badParse1 match {
-      case Left(_) => "Invalid JSON"
-      case Right(_) => "Yay, got some JSON!"
-    }
-    assert(result1 == "Invalid JSON")
+    assert(badParse1 == Left("DecodingFailure(Attempt to decode value on failed cursor, List(DownField(name), DownArray))"))
     val badParse2 = jsonStringToBorrowers(Right(jsonStringBorrowersBad2))
     val result2 = badParse2 match {
       case Left(_) => "Invalid JSON again"
