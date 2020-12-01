@@ -1,8 +1,8 @@
 package total
 
 import io.circe.Error
-import io.circe.parser._
 import io.circe.generic.auto._
+import io.circe.parser._
 
 case class Borrower(name: String, maxBooks: Int)
 

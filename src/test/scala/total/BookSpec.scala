@@ -1,8 +1,8 @@
 package total
 
+import io.circe.Error
 import org.scalatest.flatspec.AnyFlatSpec
 import total.Book._
-import io.circe.Error
 
 class BookSpec extends AnyFlatSpec {
 

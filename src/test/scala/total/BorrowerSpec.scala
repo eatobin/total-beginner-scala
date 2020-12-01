@@ -1,8 +1,8 @@
 package total
 
+import io.circe.Error
 import org.scalatest.flatspec.AnyFlatSpec
 import total.Borrower._
-import io.circe.Error
 
 class BorrowerSpec extends AnyFlatSpec {
 
