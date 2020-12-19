@@ -92,12 +92,12 @@ class LibrarySpec extends AnyFlatSpec {
       Left("DecodingFailure(Attempt to decode value on failed cursor, List(DownField(title), DownArray))"))
   }
 
-  //  it should "report read file errors" in {
-  //    val s1 = Main.readFileIntoJsonString("noFile.json")
-  //    assert(jsonStringToBorrowers(s1) == Left("noFile.json (No such file or directory)"))
-  //    val s2 = Main.readFileIntoJsonString("src/main/resources/empty.json")
-  //    assert(jsonStringToBorrowers(s2) == Right(List()))
-  //  }
+  it should "report read file errors" in {
+    val s1 = Main.readFileIntoJsonString("noFile.json")
+    assert(jsonStringToBorrowers(s1) == Left("noFile.json (No such file or directory)"))
+    val s2 = Main.readFileIntoJsonString("src/main/resources/empty.json")
+    assert(jsonStringToBorrowers(s2) == Right(List()))
+  }
 
   it should "convert objects to json strings" in {
     assert(borrowersToJsonString(List(Borrower("Borrower1", 1), Borrower("Borrower2", 2))) ==
