@@ -15,9 +15,11 @@ object Borrower {
   def getMaxBooks(br: Borrower): Int = br.maxBooks
 
   def setMaxBooks(m: Int, br: Borrower): Borrower = br.copy(maxBooks = m)
-
-  def borrowerToString(br: Borrower): String =
-    getName(br) + " (" + getMaxBooks(br).toString + " books)"
+// TODO
+//  def borrowerToString(br: Borrower): String =
+//    getName(br) + " (" + getMaxBooks(br).toString + " books)"
+def borrowerToString(br: Borrower): String =
+  getName(br) + " (" + getMaxBooks(br).toString + " books)"
 
   def borrowerJsonStringToBorrower(borrowerString: String): Either[Error, Borrower] = decode[Borrower](borrowerString)
 
