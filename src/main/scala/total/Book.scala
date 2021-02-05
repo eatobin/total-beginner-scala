@@ -25,9 +25,7 @@ object Book {
   }
 
   def bookToString(bk: Book): String =
-    getTitle(bk) +
-      " by " + getAuthor(bk) +
-      "; " + availableString(bk)
+    s"${getTitle(bk)} by ${getAuthor(bk)}; ${availableString(bk)}"
 
   def bookJsonStringToBook(bookString: String): Either[Error, Book] = decode[Book](bookString)
 
