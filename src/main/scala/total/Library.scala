@@ -96,5 +96,10 @@ object Library {
     s"Test Library: ${bks.length.toString} books; ${brs.length.toString} borrowers."
 
   def statusToString(bks: List[Book], brs: List[Borrower]): String =
-    s"\n--- Status Report of Test Library ---\n\n${libraryToString(bks, brs)}\n\n${bks.map(bk => bookToString(bk)).mkString("\n")}\n\n${brs.map(br => borrowerToString(br)).mkString("\n")}\n\n--- End of Status Report ---\n"
+    "\n--- Status Report of Test Library ---\n\n" +
+      libraryToString(bks, brs) + "\n\n" +
+      bks.map(bk => bookToString(bk)).mkString("\n") + "\n\n" +
+      brs.map(br => borrowerToString(br)).mkString("\n") + "\n\n" +
+      "--- End of Status Report ---\n"
+
 }
