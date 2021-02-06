@@ -92,10 +92,13 @@ object Library {
   def booksToJsonString(bks: List[Book]): JsonString =
     bks.asJson.noSpaces
 
+  //  def libraryToString(bks: List[Book], brs: List[Borrower]): String =
+  //    "Test Library: " +
+  //      bks.length.toString + " books; " +
+  //      brs.length.toString + " borrowers."
+
   def libraryToString(bks: List[Book], brs: List[Borrower]): String =
-    "Test Library: " +
-      bks.length.toString + " books; " +
-      brs.length.toString + " borrowers."
+    s"Test Library: ${bks.length.toString} books; ${brs.length.toString} borrowers."
 
   def statusToString(bks: List[Book], brs: List[Borrower]): String =
     "\n--- Status Report of Test Library ---\n\n" +

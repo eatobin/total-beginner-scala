@@ -19,6 +19,7 @@ object Borrower {
   def borrowerToString(br: Borrower): String =
     s"${getName(br)} (${getMaxBooks(br)} books)"
 
-  def borrowerJsonStringToBorrower(borrowerString: String): Either[Error, Borrower] = decode[Borrower](borrowerString)
+  def borrowerJsonStringToBorrower(borrowerString: String): Either[Error, Borrower] =
+    decode[Borrower](borrowerString)
 
 }
