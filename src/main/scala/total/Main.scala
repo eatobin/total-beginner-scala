@@ -29,17 +29,17 @@ object Main {
     books = Library.checkOut("Sue", "War And Peace", borrowers, books)
     println(statusToString(books, borrowers))
 
-    //    println("Now check in War And Peace from Sue...")
-    //    books.transform(checkIn("War And Peace", _))
-    //    println("...and check out Great Expectations to Jim")
-    //    books.transform(checkOut("Jim", "Great Expectations", borrowers, _))
-    //    println(statusToString(books, borrowers))
-    //
+    println("Now check in War And Peace from Sue...")
+    books = Library.checkIn("War And Peace", books)
+    println("...and check out Great Expectations to Jim")
+    books = Library.checkOut("Jim", "Great Expectations", borrowers, books)
+    println(statusToString(books, borrowers))
+
     //    println("Add Eric and The Cat In The Hat")
     //    borrowers.transform(addItem(Borrower("Eric", 1), _))
     //    books.transform(addItem(Book("The Cat In The Hat", "Dr. Seuss", None), _))
     //    println("Check Out Dr. Seuss to Eric")
-    //    books.transform(checkOut("Eric", "The Cat In The Hat", borrowers, _))
+    //    books = Library.checkOut("Eric", "The Cat In The Hat", books)
     //    println(statusToString(books, borrowers))
     //
     //    println("Now let's do some BAD stuff...\n")
@@ -55,17 +55,17 @@ object Main {
     //    println(statusToString(books, borrowers))
     //
     //    println("Check out a valid book to an invalid person (checkOut('JoJo', 'War And Peace', borrowers))")
-    //    books.transform(checkOut("JoJo", "War And Peace", borrowers, _))
+    //    books = Library.checkOut("JoJo", "War And Peace", books)
     //    println("No change to Test Library:")
     //    println(statusToString(books, borrowers))
     //
     //    println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A total.Book', borrowers))")
-    //    books.transform(checkOut("Sue", "Not A total.Book", borrowers, _))
+    //    books = Library.checkOut("Sue", "Not A total.Book", books)
     //    println("No change to Test Library:")
     //    println(statusToString(books, borrowers))
     //
     //    println("Last - check in a book not checked out (checkIn('War And Peace'))")
-    //    books.transform(checkIn("War And Peace", _))
+    //    books = Library.checkIn("War And Peace", _))
     //    println("No change to Test Library:")
     //    println(statusToString(books, borrowers))
     //
