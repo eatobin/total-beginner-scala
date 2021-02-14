@@ -25,49 +25,49 @@ object Main {
     println("\nJust created new library")
     println(statusToString(books, borrowers))
 
-    //    println("Check out War And Peace to Sue")
-    //    books.transform(checkOut("Sue", "War And Peace", borrowers.get, _))
-    //    println(statusToString(books.get, borrowers.get))
-    //
+    println("Check out War And Peace to Sue")
+    books = Library.checkOut("Sue", "War And Peace", borrowers, books)
+    println(statusToString(books, borrowers))
+
     //    println("Now check in War And Peace from Sue...")
     //    books.transform(checkIn("War And Peace", _))
     //    println("...and check out Great Expectations to Jim")
-    //    books.transform(checkOut("Jim", "Great Expectations", borrowers.get, _))
-    //    println(statusToString(books.get, borrowers.get))
+    //    books.transform(checkOut("Jim", "Great Expectations", borrowers, _))
+    //    println(statusToString(books, borrowers))
     //
     //    println("Add Eric and The Cat In The Hat")
     //    borrowers.transform(addItem(Borrower("Eric", 1), _))
     //    books.transform(addItem(Book("The Cat In The Hat", "Dr. Seuss", None), _))
     //    println("Check Out Dr. Seuss to Eric")
-    //    books.transform(checkOut("Eric", "The Cat In The Hat", borrowers.get, _))
-    //    println(statusToString(books.get, borrowers.get))
+    //    books.transform(checkOut("Eric", "The Cat In The Hat", borrowers, _))
+    //    println(statusToString(books, borrowers))
     //
     //    println("Now let's do some BAD stuff...\n")
     //
     //    println("Add a borrower that already exists (total.Borrower('Jim', 3))")
     //    borrowers.transform(addItem(Borrower("Jim", 3), _))
     //    println("No change to Test Library:")
-    //    println(statusToString(books.get, borrowers.get))
+    //    println(statusToString(books, borrowers))
     //
     //    println("Add a book that already exists (total.Book('War And Peace', 'Tolstoy', None))")
     //    books.transform(addItem(Book("War And Peace", "Tolstoy", None), _))
     //    println("No change to Test Library:")
-    //    println(statusToString(books.get, borrowers.get))
+    //    println(statusToString(books, borrowers))
     //
     //    println("Check out a valid book to an invalid person (checkOut('JoJo', 'War And Peace', borrowers))")
-    //    books.transform(checkOut("JoJo", "War And Peace", borrowers.get, _))
+    //    books.transform(checkOut("JoJo", "War And Peace", borrowers, _))
     //    println("No change to Test Library:")
-    //    println(statusToString(books.get, borrowers.get))
+    //    println(statusToString(books, borrowers))
     //
     //    println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A total.Book', borrowers))")
-    //    books.transform(checkOut("Sue", "Not A total.Book", borrowers.get, _))
+    //    books.transform(checkOut("Sue", "Not A total.Book", borrowers, _))
     //    println("No change to Test Library:")
-    //    println(statusToString(books.get, borrowers.get))
+    //    println(statusToString(books, borrowers))
     //
     //    println("Last - check in a book not checked out (checkIn('War And Peace'))")
     //    books.transform(checkIn("War And Peace", _))
     //    println("No change to Test Library:")
-    //    println(statusToString(books.get, borrowers.get))
+    //    println(statusToString(books, borrowers))
     //
     //    println("Okay... let's finish with some persistence. First clear the whole library:")
     //    newEmptyV(books, borrowers)
@@ -76,10 +76,10 @@ object Main {
     //    newV(books, borrowers, jsonBorrowersFileBefore, jsonBooksFile)
     //    println("Add... a new borrower:")
     //    borrowers.transform(addItem(Borrower("BorrowerNew", 300), _))
-    //    println(statusToString(books.get, borrowers.get))
+    //    println(statusToString(books, borrowers))
     //
     //    println("Save the revised borrowers to \"borrowers-after.json\"")
-    //    val jsonBrsStr = borrowersToJsonString(borrowers.get)
+    //    val jsonBrsStr = borrowersToJsonString(borrowers)
     //    writeJsonStringToFile(jsonBrsStr)
     //
     //    println("Clear the whole library again:")
