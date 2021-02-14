@@ -44,16 +44,16 @@ object Main {
 
     println("Now let's do some BAD stuff...\n")
 
-    //    println("Add a borrower that already exists (total.Borrower('Jim', 3))")
-    //    borrowers = Library.addItem(Borrower("Jim", 3), _))
-    //    println("No change to Test Library:")
-    //    println(statusToString(books, borrowers))
-    //
-    //    println("Add a book that already exists (total.Book('War And Peace', 'Tolstoy', None))")
-    //    books.transform(addItem(Book("War And Peace", "Tolstoy", None), _))
-    //    println("No change to Test Library:")
-    //    println(statusToString(books, borrowers))
-    //
+    println("Add a borrower that already exists (total.Borrower('Jim', 3))")
+    borrowers = Library.addItem(Borrower("Jim", 3), borrowers)
+    println("No change to Test Library:")
+    println(statusToString(books, borrowers))
+
+    println("Add a book that already exists (Book('War And Peace', 'Tolstoy', None))")
+    books = Library.addItem(Book("War And Peace", "Tolstoy", None), books)
+    println("No change to Test Library:")
+    println(statusToString(books, borrowers))
+
     //    println("Check out a valid book to an invalid person (checkOut('JoJo', 'War And Peace', borrowers))")
     //    books = Library.checkOut("JoJo", "War And Peace", books)
     //    println("No change to Test Library:")
