@@ -19,6 +19,9 @@ object Library {
   def removeBook(bk: Book, bks: List[Book]): List[Book] =
     bks.filter(_ != bk)
 
+  def removeBookImp(bk: Book)(implicit bks: List[Book]): List[Book] =
+    bks.filter(_ != bk)
+
   def findItem[A](tgt: String, coll: List[A], f: A => String): Option[A] = {
     val result = coll.filter(item => f(item) == tgt)
     result.headOption
