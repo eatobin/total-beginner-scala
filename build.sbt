@@ -10,8 +10,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "total",
     libraryDependencies ++= Seq(
-      "org.scalatest" %% "scalatest" % "3.1.2" % "test",
-      "org.scala-stm" %% "scala-stm" % "0.9.1"
+      "org.scalatest" %% "scalatest" % "3.1.2" % "test"
     ),
     libraryDependencies ++= Seq(
       "io.circe" %% "circe-core",
