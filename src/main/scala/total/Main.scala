@@ -7,8 +7,8 @@ import scala.io.Source
 //noinspection DuplicatedCode,DuplicatedCode
 object Main {
 
-  var borrowers: List[Borrower] = List()
-  var books: List[Book] = List()
+  var borrowers: List[Borrower] = List.empty
+  var books: List[Book] = List.empty
 
   val jsonBorrowersFileBefore = "src/main/resources/borrowers-before.json"
   val jsonBooksFile = "src/main/resources/books-before.json"
@@ -54,24 +54,24 @@ object Main {
     println("No change to Test Library:")
     println(statusToString(books, borrowers))
 
-    //    println("Check out a valid book to an invalid person (checkOut('JoJo', 'War And Peace', borrowers))")
-    //    books = Library.checkOut("JoJo", "War And Peace", books)
-    //    println("No change to Test Library:")
-    //    println(statusToString(books, borrowers))
-    //
-    //    println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A total.Book', borrowers))")
-    //    books = Library.checkOut("Sue", "Not A total.Book", books)
-    //    println("No change to Test Library:")
-    //    println(statusToString(books, borrowers))
-    //
-    //    println("Last - check in a book not checked out (checkIn('War And Peace'))")
-    //    books = Library.checkIn("War And Peace", _))
-    //    println("No change to Test Library:")
-    //    println(statusToString(books, borrowers))
-    //
-    //    println("Okay... let's finish with some persistence. First clear the whole library:")
-    //    newEmptyV(books, borrowers)
-    //
+    println("Check out a valid book to an invalid person (checkOut('JoJo', 'War And Peace', borrowers))")
+    books = Library.checkOut("JoJo", "War And Peace", borrowers, books)
+    println("No change to Test Library:")
+    println(statusToString(books, borrowers))
+
+    println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A total.Book', borrowers))")
+    books = Library.checkOut("Sue", "Not A total.Book", borrowers, books)
+    println("No change to Test Library:")
+    println(statusToString(books, borrowers))
+
+    println("Last - check in a book not checked out (checkIn('War And Peace'))")
+    books = Library.checkIn("War And Peace", books)
+    println("No change to Test Library:")
+    println(statusToString(books, borrowers))
+
+    println("Okay... let's finish with some persistence. First clear the whole library:")
+    newEmpty()
+
     //    println("Lets read in a new library from \"borrowers-before.json\" and \"books-before.json\":")
     //    newV(books, borrowers, jsonBorrowersFileBefore, jsonBooksFile)
     //    println("Add... a new borrower:")
@@ -106,14 +106,13 @@ object Main {
 
   }
 
-  //  def newEmptyV(tvBooks: Ref[List[Book]], tvBorrowers: Ref[List[Borrower]]): Unit = {
-  //    atomic { implicit txn =>
-  //      tvBooks.set(List[Book]())
-  //      tvBorrowers.set(List[Borrower]())
-  //      println(statusToString(tvBooks.get, tvBorrowers.get))
-  //    }
-  //  }
-  //
+  def newEmpty(): Unit = {
+    books = List.empty
+    borrowers = List.empty
+    println(statusToString(books, borrowers))
+  }
+
+
   def readFileIntoJsonString(fp: String): Either[ErrorString, JsonString] =
     try {
       val bufferedSource = Source.fromFile(fp)
