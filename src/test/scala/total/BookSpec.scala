@@ -36,4 +36,8 @@ class BookSpec extends AnyFlatSpec {
     assert(bkJson2 == Right(bk2))
   }
 
+  it should "turn a Book into a JSON string" in {
+    assert(bookToJsonString(bk1) == jsonStringBk1)
+  }
+
 }
