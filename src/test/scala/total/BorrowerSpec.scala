@@ -1,6 +1,5 @@
 package total
 
-import io.circe.Error
 import org.scalatest.flatspec.AnyFlatSpec
 import total.Borrower._
 
@@ -23,6 +22,10 @@ class BorrowerSpec extends AnyFlatSpec {
 
   it should "return a string \"Borrower1 (1 books)\"" in {
     assert(borrowerToString(br1) == "Borrower1 (1 books)")
+  }
+
+  it should "turn a Borrower into a JSON string" in {
+    assert(borrowerToJsonString(br1) == jsonStringBr)
   }
 
 }

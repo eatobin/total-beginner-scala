@@ -3,6 +3,7 @@ package total
 import io.circe.Error
 import io.circe.generic.auto._
 import io.circe.parser._
+import io.circe.syntax.EncoderOps
 
 case class Borrower(name: String, maxBooks: Int)
 
@@ -21,5 +22,8 @@ object Borrower {
 
   def borrowerJsonStringToBorrower(borrowerString: String): Either[Error, Borrower] =
     decode[Borrower](borrowerString)
+
+  def borrowerToJsonString(br: Borrower): JsonString =
+    br.asJson.noSpaces
 
 }
