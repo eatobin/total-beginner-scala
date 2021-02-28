@@ -7,7 +7,7 @@ import total.Borrower._
 class BorrowerSpec extends AnyFlatSpec {
 
   private val jsonStringBr: String = "{\"name\":\"Borrower1\",\"maxBooks\":1}"
-  private val br1: Borrower = Borrower("Borrower1", 1)
+  private val br1: Borrower = borrowerJsonStringToBorrower(jsonStringBr).getOrElse(Borrower("", 0))
 
   "A Borrower" should "create itself properly" in {
     assert(getName(br1) == "Borrower1")
@@ -23,11 +23,6 @@ class BorrowerSpec extends AnyFlatSpec {
 
   it should "return a string \"Borrower1 (1 books)\"" in {
     assert(borrowerToString(br1) == "Borrower1 (1 books)")
-  }
-
-  it should "convert from JSON" in {
-    val brJson: Either[Error, Borrower] = borrowerJsonStringToBorrower(jsonStringBr)
-    assert(brJson == Right(br1))
   }
 
 }
