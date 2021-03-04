@@ -16,8 +16,8 @@ class BorrowerSpec extends AnyFlatSpec {
   }
 
   it should "set a new name and maxBooks" in {
-    assert(setName("Borrower1", Borrower("Jack", 1)) == br1)
-    assert(setMaxBooks(1, Borrower("Borrower1", 11)) == br1)
+    assert(setName("Borrower1")(Borrower("Jack", 1)) == br1)
+    assert(setMaxBooks(1)(Borrower("Borrower1", 11)) == br1)
   }
 
   it should "return a string \"Borrower1 (1 books)\"" in {
