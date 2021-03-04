@@ -45,6 +45,7 @@ class LibrarySpec extends AnyFlatSpec {
     assert(removeBook(bk3, bks2) == bks1)
     assert(removeBook(bk3, bks1) == bks1)
     assert(removeBookImp(bk3) == bks1)
+    assert(removeBookImp(bk3)(bks1) == bks1)
   }
 
   it should "find a Book or Borrower correctly" in {
