@@ -8,8 +8,8 @@ import scala.io.Source
 //noinspection DuplicatedCode,DuplicatedCode
 object Main {
 
-  var borrowers: List[Borrower] = List.empty
-  var books: List[Book] = List.empty
+  implicit var borrowers: List[Borrower] = List.empty
+  implicit var books: List[Book] = List.empty
 
   val jsonBorrowersFileBefore = "src/main/resources/borrowers-before.json"
   val jsonBooksFile = "src/main/resources/books-before.json"
@@ -19,10 +19,10 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 
-    borrowers = Library.addItem(Borrower("Jim", 3))(borrowers)
-    borrowers = Library.addItem(Borrower("Sue", 3))(borrowers)
-    books = Library.addItem(Book("War And Peace", "Tolstoy", None))(books)
-    books = Library.addItem(Book("Great Expectations", "Dickens", None))(books)
+    borrowers = Library.addItem(Borrower("Jim", 3))
+    borrowers = Library.addItem(Borrower("Sue", 3))
+    books = Library.addItem(Book("War And Peace", "Tolstoy", None))
+    books = Library.addItem(Book("Great Expectations", "Dickens", None))
     println("\nJust created new library")
     println(statusToString(books, borrowers))
 

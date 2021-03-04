@@ -11,7 +11,7 @@ class LibrarySpec extends AnyFlatSpec {
   val br2: Borrower = Borrower("Borrower2", 2)
   val br3: Borrower = Borrower("Borrower3", 3)
 
-  val brs1: List[Borrower] = List(br1, br2)
+  implicit val brs1: List[Borrower] = List(br1, br2)
   val brs2: List[Borrower] = List(br3, br1, br2)
 
   val bk1: Book = Book("Title1", "Author1", Some(br1))
@@ -19,9 +19,8 @@ class LibrarySpec extends AnyFlatSpec {
   val bk3: Book = Book("Title3", "Author3", Some(br3))
   val bk4: Book = Book("Title4", "Author4", Some(Borrower("Borrower3", 3)))
 
-  val bks1: List[Book] = List(bk1, bk2)
+  implicit val bks1: List[Book] = List(bk1, bk2)
   val bks2: List[Book] = List(bk3, bk1, bk2)
-  implicit val bks2I: List[Book] = List(bk3, bk1, bk2)
   val bks3: List[Book] = List(bk1, bk2, bk3, bk4)
 
   val jsonStringBorrowers = "[{\n  \"maxBooks\": 1,\n  \"name\": \"Borrower1\"\n}, {\n  \"maxBooks\": 2,\n  \"name\": \"Borrower2\"\n}]"
@@ -35,10 +34,10 @@ class LibrarySpec extends AnyFlatSpec {
 
   "A Library" should "add a Borrower or Book correctly" in {
     assert(addItem(br3)(brs1) == brs2)
-    assert(addItem(br2)(brs1) == brs1)
+    assert(addItem(br2) == brs1)
 
     assert(addItem(bk3)(bks1) == bks2)
-    assert(addItem(bk2)(bks1) == bks1)
+    assert(addItem(bk2) == bks1)
   }
 
   it should "remove a Book correctly (and implicitly)" in {
