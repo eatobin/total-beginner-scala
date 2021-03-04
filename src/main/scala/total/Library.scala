@@ -9,7 +9,7 @@ import total.Borrower._
 //noinspection DuplicatedCode,DuplicatedCode
 object Library {
 
-  def addItem[A](x: A, xs: List[A]): List[A] = {
+  def addItem[A](x: A)(implicit xs: List[A]): List[A] = {
     if (xs.contains(x))
       xs
     else
@@ -49,7 +49,7 @@ object Library {
     if (mbk.isDefined && mbr.isDefined && notMaxedOut(mbr.get, bks) && bookNotOut(mbk.get)) {
       val newBook = setBorrower(mbr, mbk.get)
       val fewerBooks = removeBook(mbk.get, bks)
-      addItem(newBook, fewerBooks)
+      addItem(newBook)(fewerBooks)
     } else bks
   }
 
@@ -59,7 +59,7 @@ object Library {
     if (mbk.isDefined && bookOut(mbk.get)) {
       val newBook = setBorrower(None, mbk.get)
       val fewerBooks = removeBook(mbk.get, bks)
-      addItem(newBook, fewerBooks)
+      addItem(newBook)(fewerBooks)
     } else bks
   }
 

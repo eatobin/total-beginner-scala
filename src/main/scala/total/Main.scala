@@ -19,10 +19,10 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 
-    borrowers = Library.addItem(Borrower("Jim", 3), borrowers)
-    borrowers = Library.addItem(Borrower("Sue", 3), borrowers)
-    books = Library.addItem(Book("War And Peace", "Tolstoy", None), books)
-    books = Library.addItem(Book("Great Expectations", "Dickens", None), books)
+    borrowers = Library.addItem(Borrower("Jim", 3))(borrowers)
+    borrowers = Library.addItem(Borrower("Sue", 3))(borrowers)
+    books = Library.addItem(Book("War And Peace", "Tolstoy", None))(books)
+    books = Library.addItem(Book("Great Expectations", "Dickens", None))(books)
     println("\nJust created new library")
     println(statusToString(books, borrowers))
 
@@ -37,8 +37,8 @@ object Main {
     println(statusToString(books, borrowers))
 
     println("Add Eric and The Cat In The Hat")
-    borrowers = Library.addItem(Borrower("Eric", 1), borrowers)
-    books = Library.addItem(Book("The Cat In The Hat", "Dr. Seuss", None), books)
+    borrowers = Library.addItem(Borrower("Eric", 1))(borrowers)
+    books = Library.addItem(Book("The Cat In The Hat", "Dr. Seuss", None))(books)
     println("Check Out Dr. Seuss to Eric")
     books = Library.checkOut("Eric", "The Cat In The Hat", borrowers, books)
     println(statusToString(books, borrowers))
@@ -46,12 +46,12 @@ object Main {
     println("Now let's do some BAD stuff...\n")
 
     println("Add a borrower that already exists (total.Borrower('Jim', 3))")
-    borrowers = Library.addItem(Borrower("Jim", 3), borrowers)
+    borrowers = Library.addItem(Borrower("Jim", 3))(borrowers)
     println("No change to Test Library:")
     println(statusToString(books, borrowers))
 
     println("Add a book that already exists (Book('War And Peace', 'Tolstoy', None))")
-    books = Library.addItem(Book("War And Peace", "Tolstoy", None), books)
+    books = Library.addItem(Book("War And Peace", "Tolstoy", None))(books)
     println("No change to Test Library:")
     println(statusToString(books, borrowers))
 
@@ -76,7 +76,7 @@ object Main {
     println("Lets read in a new library from \"borrowers-before.json\" and \"books-before.json\":")
     newLib(jsonBorrowersFileBefore, jsonBooksFile)
     println("Add... a new borrower:")
-    borrowers = Library.addItem(Borrower("BorrowerNew", 300), borrowers)
+    borrowers = Library.addItem(Borrower("BorrowerNew", 300))(borrowers)
     println(statusToString(books, borrowers))
 
     println("Save the revised borrowers to \"borrowers-after.json\"")

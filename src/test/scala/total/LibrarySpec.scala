@@ -34,11 +34,11 @@ class LibrarySpec extends AnyFlatSpec {
   val ss = "\n--- Status Report of Test Library ---\n\nTest Library: 3 books; 3 borrowers.\n\nTitle3 by Author3; Checked out to Borrower3\nTitle1 by Author1; Checked out to Borrower1\nTitle2 by Author2; Available\n\nBorrower3 (3 books)\nBorrower1 (1 books)\nBorrower2 (2 books)\n\n--- End of Status Report ---\n"
 
   "A Library" should "add a Borrower or Book correctly" in {
-    assert(addItem(br3, brs1) == brs2)
-    assert(addItem(br2, brs1) == brs1)
+    assert(addItem(br3)(brs1) == brs2)
+    assert(addItem(br2)(brs1) == brs1)
 
-    assert(addItem(bk3, bks1) == bks2)
-    assert(addItem(bk2, bks1) == bks1)
+    assert(addItem(bk3)(bks1) == bks2)
+    assert(addItem(bk2)(bks1) == bks1)
   }
 
   it should "remove a Book correctly (and implicitly)" in {
