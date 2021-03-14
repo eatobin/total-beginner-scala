@@ -23,12 +23,12 @@ class LibrarySpec extends AnyFlatSpec {
   val bks2: List[Book] = List(bk3, bk1, bk2)
   val bks3: List[Book] = List(bk1, bk2, bk3, bk4)
 
-  val jsonStringBorrowers = "[{\n  \"maxBooks\": 1,\n  \"name\": \"Borrower1\"\n}, {\n  \"maxBooks\": 2,\n  \"name\": \"Borrower2\"\n}]"
-  val jsonStringBooks = "[{\n  \"author\": \"Author22\",\n  \"borrower\": null,\n  \"title\": \"Title2\"\n}, {\n  \"author\": \"Author99\",\n  \"borrower\": null,\n  \"title\": \"Title99\"\n}]"
-  val jsonStringBooksBorrower = "[{\n  \"author\": \"Author22\",\n  \"borrower\": {\n  \"maxBooks\": 1,\n  \"name\": \"Borrower1\"\n},\n  \"title\": \"Title2\"\n}, {\n  \"author\": \"Author99\",\n  \"borrower\": null,\n  \"title\": \"Title99\"\n}]"
-  val jsonStringBorrowersBad = "[{\"nameX\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]"
-  val jsonStringBooksBad = "[{\"titleX\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]"
-  val jsonStringBorrowersBad2 = "[{\"name\"\"Borrower1\",\"max-books\":1},{\"name\":\"Borrower2\",\"max-books\":2}]"
+  val jsonStringBorrowers: JsonString = "[{\n  \"maxBooks\": 1,\n  \"name\": \"Borrower1\"\n}, {\n  \"maxBooks\": 2,\n  \"name\": \"Borrower2\"\n}]"
+  val jsonStringBooks: JsonString = "[{\n  \"author\": \"Author22\",\n  \"borrower\": null,\n  \"title\": \"Title2\"\n}, {\n  \"author\": \"Author99\",\n  \"borrower\": null,\n  \"title\": \"Title99\"\n}]"
+  val jsonStringBooksBorrower: JsonString = "[{\n  \"author\": \"Author22\",\n  \"borrower\": {\n  \"maxBooks\": 1,\n  \"name\": \"Borrower1\"\n},\n  \"title\": \"Title2\"\n}, {\n  \"author\": \"Author99\",\n  \"borrower\": null,\n  \"title\": \"Title99\"\n}]"
+  val jsonStringBorrowersBad: JsonString = "[{\"nameX\":\"Borrower1\",\"maxBooks\":1},{\"name\":\"Borrower2\",\"maxBooks\":2}]"
+  val jsonStringBooksBad: JsonString = "[{\"titleX\":\"Title2\",\"author\":\"Author22\",\"borrower\":null},{\"title\":\"Title99\",\"author\":\"Author99\",\"borrower\":null}]"
+  val jsonStringBorrowersBad2: JsonString = "[{\"name\"\"Borrower1\",\"max-books\":1},{\"name\":\"Borrower2\",\"max-books\":2}]"
 
   val ss = "\n--- Status Report of Test Library ---\n\nTest Library: 3 books; 3 borrowers.\n\nTitle3 by Author3; Checked out to Borrower3\nTitle1 by Author1; Checked out to Borrower1\nTitle2 by Author2; Available\n\nBorrower3 (3 books)\nBorrower1 (1 books)\nBorrower2 (2 books)\n\n--- End of Status Report ---\n"
 
