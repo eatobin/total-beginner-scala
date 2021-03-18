@@ -21,8 +21,8 @@ object Main {
 
     borrowers = Library.addItem(Borrower("Jim", 3))
     borrowers = Library.addItem(Borrower("Sue", 3))
-    books = Library.addItem(Book("War And Peace", "Tolstoy", None))
-    books = Library.addItem(Book("Great Expectations", "Dickens", None))
+    books = Library.addItem(Book("War And Peace", "Tolstoy"))
+    books = Library.addItem(Book("Great Expectations", "Dickens"))
     println("\nJust created new library")
     println(statusToString(books, borrowers))
 
@@ -38,7 +38,7 @@ object Main {
 
     println("Add Eric and The Cat In The Hat")
     borrowers = Library.addItem(Borrower("Eric", 1))(borrowers)
-    books = Library.addItem(Book("The Cat In The Hat", "Dr. Seuss", None))(books)
+    books = Library.addItem(Book("The Cat In The Hat", "Dr. Seuss"))(books)
     println("Check Out Dr. Seuss to Eric")
     books = Library.checkOut("Eric")("The Cat In The Hat")(borrowers)(books)
     println(statusToString(books, borrowers))
