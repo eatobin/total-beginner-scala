@@ -15,7 +15,7 @@ object Book {
 
   def getBorrower(bk: Book): Option[Borrower] = bk.borrower
 
-  def setBorrower(br: Option[Borrower], bk: Book): Book = bk.copy(borrower = br)
+  def setBorrower(br: Option[Borrower])(bk: Book): Book = bk.copy(borrower = br)
 
   def availableString(bk: Book): String = {
     getBorrower(bk) match {

@@ -47,7 +47,7 @@ object Library {
     val mbr = findItem(n, brs, getName)
 
     if (mbk.isDefined && mbr.isDefined && notMaxedOut(mbr.get, bks) && bookNotOut(mbk.get)) {
-      val newBook = setBorrower(mbr, mbk.get)
+      val newBook = setBorrower(mbr)(mbk.get)
       val fewerBooks = removeBook(mbk.get, bks)
       addItem(newBook)(fewerBooks)
     } else bks
@@ -57,7 +57,7 @@ object Library {
     val mbk = findItem(t, bks, getTitle)
 
     if (mbk.isDefined && bookOut(mbk.get)) {
-      val newBook = setBorrower(None, mbk.get)
+      val newBook = setBorrower(None)(mbk.get)
       val fewerBooks = removeBook(mbk.get, bks)
       addItem(newBook)(fewerBooks)
     } else bks
