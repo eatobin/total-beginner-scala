@@ -41,39 +41,39 @@ class LibrarySpec extends AnyFlatSpec {
   }
 
   it should "remove a Book correctly (and implicitly)" in {
-    assert(removeBook(bk3, bks2) == bks1)
-    assert(removeBook(bk3, bks1) == bks1)
+    assert(removeBook(bk3)(bks2) == bks1)
+    assert(removeBook(bk3)(bks1) == bks1)
     assert(removeBookImp(bk3) == bks1)
     assert(removeBookImp(bk3)(bks1) == bks1)
   }
 
   it should "find a Book or Borrower correctly" in {
-    assert(findItem("Title1", bks2, getTitle).contains(bk1))
-    assert(findItem("Title11", bks2, getTitle).isEmpty)
+    assert(findItem("Title1")(bks2)(getTitle).contains(bk1))
+    assert(findItem("Title11")(bks2)(getTitle).isEmpty)
 
-    assert(findItem("Borrower1", brs2, getName).contains(br1))
-    assert(findItem("Borrower11", brs2, getName).isEmpty)
+    assert(findItem("Borrower1")(brs2)(getName).contains(br1))
+    assert(findItem("Borrower11")(brs2)(getName).isEmpty)
   }
 
   it should "find List[Book] for a Borrower" in {
-    assert(getBooksForBorrower(br2, bks1) == List())
-    assert(getBooksForBorrower(br1, bks1) == List(bk1))
-    assert(getBooksForBorrower(br3, bks3) == List(bk3, bk4))
+    assert(getBooksForBorrower(br2)(bks1) == List())
+    assert(getBooksForBorrower(br1)(bks1) == List(bk1))
+    assert(getBooksForBorrower(br3)(bks3) == List(bk3, bk4))
   }
 
   it should "check out a Book correctly" in {
-    assert(checkOut("Borrower2", "Title1", brs1, bks1) == bks1)
-    assert(checkOut("Borrower2", "NoTitle", brs1, bks1) == bks1)
-    assert(checkOut("NoName", "Title1", brs1, bks1) == bks1)
-    assert(checkOut("Borrower1", "Title2", brs1, bks1) == bks1)
-    assert(checkOut("Borrower2", "Title2", brs1, bks1) ==
+    assert(checkOut("Borrower2")("Title1")(brs1)(bks1) == bks1)
+    assert(checkOut("Borrower2")("NoTitle")(brs1)(bks1) == bks1)
+    assert(checkOut("NoName")("Title1")(brs1)(bks1) == bks1)
+    assert(checkOut("Borrower1")("Title2")(brs1)(bks1) == bks1)
+    assert(checkOut("Borrower2")("Title2")(brs1)(bks1) ==
       List(Book("Title2", "Author2", Some(Borrower("Borrower2", 2))), bk1))
   }
 
   it should "check in a Book correctly" in {
-    assert(checkIn("Title1", bks1) == List(Book("Title1", "Author1", None), bk2))
-    assert(checkIn("Title2", bks1) == bks1)
-    assert(checkIn("NoTitle", bks1) == bks1)
+    assert(checkIn("Title1")(bks1) == List(Book("Title1", "Author1", None), bk2))
+    assert(checkIn("Title2")(bks1) == bks1)
+    assert(checkIn("NoTitle")(bks1) == bks1)
   }
 
   it should "parse json strings to objects" in {
