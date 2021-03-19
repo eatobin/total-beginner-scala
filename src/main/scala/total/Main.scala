@@ -1,7 +1,5 @@
 package total
 
-import total.Library._
-
 import java.io.{BufferedWriter, File, FileWriter}
 import scala.io.Source
 
@@ -24,51 +22,51 @@ object Main {
     books = Library.addItem(Book("War And Peace", "Tolstoy"))
     books = Library.addItem(Book("Great Expectations", "Dickens"))
     println("\nJust created new library")
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
 
     println("Check out War And Peace to Sue")
     books = Library.checkOut("Sue")("War And Peace")(borrowers)(books)
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
 
     println("Now check in War And Peace from Sue...")
     books = Library.checkIn("War And Peace")(books)
     println("...and check out Great Expectations to Jim")
     books = Library.checkOut("Jim")("Great Expectations")(borrowers)(books)
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
 
     println("Add Eric and The Cat In The Hat")
     borrowers = Library.addItem(Borrower("Eric", 1))(borrowers)
     books = Library.addItem(Book("The Cat In The Hat", "Dr. Seuss"))(books)
     println("Check Out Dr. Seuss to Eric")
     books = Library.checkOut("Eric")("The Cat In The Hat")(borrowers)(books)
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
 
     println("Now let's do some BAD stuff...\n")
 
     println("Add a borrower that already exists (total.Borrower('Jim', 3))")
     borrowers = Library.addItem(Borrower("Jim", 3))(borrowers)
     println("No change to Test Library:")
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
 
     println("Add a book that already exists (Book('War And Peace', 'Tolstoy', None))")
     books = Library.addItem(Book("War And Peace", "Tolstoy", None))(books)
     println("No change to Test Library:")
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
 
     println("Check out a valid book to an invalid person (checkOut('JoJo', 'War And Peace', borrowers))")
     books = Library.checkOut("JoJo")("War And Peace")(borrowers)(books)
     println("No change to Test Library:")
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
 
     println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A total.Book', borrowers))")
     books = Library.checkOut("Sue")("Not A total.Book")(borrowers)(books)
     println("No change to Test Library:")
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
 
     println("Last - check in a book not checked out (checkIn('War And Peace'))")
     books = Library.checkIn("War And Peace")(books)
     println("No change to Test Library:")
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
 
     println("Okay... let's finish with some persistence. First clear the whole library:")
     emptyLib()
@@ -77,10 +75,10 @@ object Main {
     newLib(jsonBorrowersFileBefore, jsonBooksFile)
     println("Add... a new borrower:")
     borrowers = Library.addItem(Borrower("BorrowerNew", 300))(borrowers)
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
 
     println("Save the revised borrowers to \"borrowers-after.json\"")
-    val jsonBrsStr = borrowersToJsonString(borrowers)
+    val jsonBrsStr = Library.borrowersToJsonString(borrowers)
     writeJsonStringToFile(jsonBrsStr)
 
     println("Clear the whole library again:")
@@ -110,7 +108,7 @@ object Main {
   def emptyLib(): Unit = {
     books = List.empty
     borrowers = List.empty
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
   }
 
 
@@ -136,8 +134,8 @@ object Main {
   def newLib(brsfp: String, bksfp: String): Unit = {
     val jsonBrsStr: Either[ErrorString, JsonString] = Main.readFileIntoJsonString(brsfp)
     val jsonBksStr: Either[ErrorString, JsonString] = Main.readFileIntoJsonString(bksfp)
-    val brs = jsonStringToBorrowers(jsonBrsStr)
-    val bks = jsonStringToBooks(jsonBksStr)
+    val brs = Library.jsonStringToBorrowers(jsonBrsStr)
+    val bks = Library.jsonStringToBooks(jsonBksStr)
 
     brs match {
       case Right(r) =>
@@ -151,7 +149,7 @@ object Main {
       case Left(l) =>
         println(l)
     }
-    println(statusToString(books, borrowers))
+    println(Library.toString(books, borrowers))
   }
 
 }
