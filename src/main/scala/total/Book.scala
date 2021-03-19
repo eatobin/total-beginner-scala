@@ -19,8 +19,8 @@ object Book {
 
   private def availableString(bk: Book): String = {
     getBorrower(bk) match {
-      case None => "Available"
       case Some(br) => s"Checked out to ${Borrower.getName(br)}"
+      case None => "Available"
     }
   }
 
