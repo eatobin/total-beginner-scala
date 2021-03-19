@@ -17,17 +17,17 @@ object Book {
 
   def setBorrower(br: Option[Borrower])(bk: Book): Book = bk.copy(borrower = br)
 
-  def availableString(bk: Book): String = {
+  private def availableString(bk: Book): String = {
     getBorrower(bk) match {
       case None => "Available"
       case Some(br) => s"Checked out to ${Borrower.getName(br)}"
     }
   }
 
-  def bookToString(bk: Book): String =
+  def toString(bk: Book): String =
     s"${getTitle(bk)} by ${getAuthor(bk)}; ${availableString(bk)}"
 
-  def bookJsonStringToBook(bookString: String): Either[Error, Book] = decode[Book](bookString)
+  def jsonStringToBook(bookString: String): Either[Error, Book] = decode[Book](bookString)
 
   def bookToJsonString(bk: Book): JsonString =
     bk.asJson.noSpaces
