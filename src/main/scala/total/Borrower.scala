@@ -17,10 +17,10 @@ object Borrower {
 
   def setMaxBooks(m: Int)(br: Borrower): Borrower = br.copy(maxBooks = m)
 
-  def borrowerToString(br: Borrower): String =
+  def toString(br: Borrower): String =
     s"${getName(br)} (${getMaxBooks(br)} books)"
 
-  def borrowerJsonStringToBorrower(borrowerString: String): Either[Error, Borrower] =
+  def jsonStringToBorrower(borrowerString: String): Either[Error, Borrower] =
     decode[Borrower](borrowerString)
 
   def borrowerToJsonString(br: Borrower): JsonString =

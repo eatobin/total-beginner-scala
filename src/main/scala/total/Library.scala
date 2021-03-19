@@ -102,7 +102,7 @@ object Library {
     "\n--- Status Report of Test Library ---\n\n" +
       libraryToString(brs)(bks) + "\n\n" +
       bks.map(bk => bookToString(bk)).mkString("\n") + "\n\n" +
-      brs.map(br => borrowerToString(br)).mkString("\n") + "\n\n" +
+      brs.map(br => toString(br)).mkString("\n") + "\n\n" +
       "--- End of Status Report ---\n"
 
 }
