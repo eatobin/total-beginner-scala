@@ -4,7 +4,7 @@ import java.io.{BufferedWriter, File, FileWriter}
 import scala.io.Source
 
 //noinspection DuplicatedCode,DuplicatedCode
-object Main {
+object Total {
 
   implicit var borrowers: List[Borrower] = List.empty
   implicit var books: List[Book] = List.empty
@@ -132,8 +132,8 @@ object Main {
   }
 
   def newLib(brsfp: String, bksfp: String): Unit = {
-    val jsonBrsStr: Either[ErrorString, JsonString] = Main.readFileIntoJsonString(brsfp)
-    val jsonBksStr: Either[ErrorString, JsonString] = Main.readFileIntoJsonString(bksfp)
+    val jsonBrsStr: Either[ErrorString, JsonString] = Total.readFileIntoJsonString(brsfp)
+    val jsonBksStr: Either[ErrorString, JsonString] = Total.readFileIntoJsonString(bksfp)
     val brs = Library.jsonStringToBorrowers(jsonBrsStr)
     val bks = Library.jsonStringToBooks(jsonBksStr)
 

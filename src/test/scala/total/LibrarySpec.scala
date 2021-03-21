@@ -92,9 +92,9 @@ class LibrarySpec extends AnyFlatSpec {
   }
 
   it should "report read file errors" in {
-    val s1 = Main.readFileIntoJsonString("noFile.json")
+    val s1 = Total.readFileIntoJsonString("noFile.json")
     assert(Library.jsonStringToBorrowers(s1) == Left("noFile.json (No such file or directory)"))
-    val s2 = Main.readFileIntoJsonString("src/main/resources/empty.json")
+    val s2 = Total.readFileIntoJsonString("src/main/resources/empty.json")
     assert(Library.jsonStringToBorrowers(s2) == Right(List()))
   }
 
