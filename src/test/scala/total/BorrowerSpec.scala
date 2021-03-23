@@ -15,6 +15,18 @@ class BorrowerSpec extends AnyFlatSpec {
       case Left(e) => assert(e.toString == "")
       case Right(br) => assert(Borrower.getName(br) == "Borrower1")
     }
+    br1 match {
+      case Left(e) => assert(e.toString == "")
+      case Right(br) => assert(br.name == "Borrower1")
+    }
+    br1 match {
+      case Left(e) => assert(e.toString == "")
+      case Right(br) => assert(Borrower.getMaxBooks(br) == 1)
+    }
+    br1 match {
+      case Left(e) => assert(e.toString == "")
+      case Right(br) => assert(br.maxBooks == 1)
+    }
 
 
     //      assert(Borrower.getName(br1) == "Borrower1")
