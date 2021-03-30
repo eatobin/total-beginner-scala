@@ -13,7 +13,7 @@ object Total {
   val jsonBooksFile = "src/main/resources/books-before.json"
   val jsonBorrowersFileAfter = "src/main/resources/borrowers-after.json"
   val jsonBorrowersFileBad = "src/main/resources/bad-borrowers.json"
-  val emptyFile = "src/main/resources/resources/empty.json"
+  val emptyFile = "src/main/resources/empty.json"
 
   def main(args: Array[String]): Unit = {
 
