@@ -1,6 +1,8 @@
 package total
 
-import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
+import io.circe.generic.auto._
+import io.circe.parser._
+import io.circe.syntax._
 
 //noinspection DuplicatedCode,DuplicatedCode
 object Library {
