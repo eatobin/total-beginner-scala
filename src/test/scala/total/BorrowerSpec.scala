@@ -39,11 +39,11 @@ class BorrowerSpec extends AnyFlatSpec {
   it should "set a new name and maxBooks" in {
     br1 match {
       case Left(e) => assert(e.toString == "")
-      case Right(br) => assert(Borrower.setName("Borrower1")(Borrower("Jack", 1)) == br)
+      case Right(br) => assert(Borrower.setName("Borrower1", Borrower("Jack", 1)) == br)
     }
     br1 match {
       case Left(e) => assert(e.toString == "")
-      case Right(br) => assert(Borrower.setMaxBooks(1)(Borrower("Borrower1", 11)) == br)
+      case Right(br) => assert(Borrower.setMaxBooks(1, Borrower("Borrower1", 11)) == br)
     }
   }
 
