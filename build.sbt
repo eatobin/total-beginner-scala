@@ -8,7 +8,7 @@ val circeVersion = "0.14.1"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "total",
+    name := "total-scala",
     libraryDependencies ++= Seq(
       "org.scalactic" %% "scalactic" % "3.2.11",
       "org.scalatest" %% "scalatest" % "3.2.11" % "test"
