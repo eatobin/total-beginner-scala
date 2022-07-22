@@ -31,7 +31,7 @@ class BorrowerSpec extends AnyFlatSpec {
 
   it should "NOT create itself properly - brWonky" in {
     brWonky match {
-      case Left(e) => assert(e.toString == "DecodingFailure(Attempt to decode value on failed cursor, List(DownField(name)))")
+      case Left(e) => assert(e.toString == "DecodingFailure(Missing required field, List(DownField(name)))")
       case Right(br) => assert(Borrower.getName(br) == "")
     }
   }

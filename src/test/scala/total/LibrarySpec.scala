@@ -84,11 +84,11 @@ class LibrarySpec extends AnyFlatSpec {
 
   it should "report json parse errors" in {
     assert(Library.jsonStringToBorrowers(Right(jsonStringBorrowersBad)) ==
-      Left("DecodingFailure(Attempt to decode value on failed cursor, List(DownField(name), DownArray))"))
+      Left("DecodingFailure(Missing required field, List(DownField(name), DownArray))"))
     assert(Library.jsonStringToBorrowers(Right(jsonStringBorrowersBad2)) ==
       Left("""io.circe.ParsingFailure: expected : got '"Borro...' (line 1, column 9)"""))
     assert(Library.jsonStringToBooks(Right(jsonStringBooksBad)) ==
-      Left("DecodingFailure(Attempt to decode value on failed cursor, List(DownField(title), DownArray))"))
+      Left("DecodingFailure(Missing required field, List(DownField(title), DownArray))"))
   }
 
   it should "report read file errors" in {

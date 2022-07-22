@@ -4,14 +4,14 @@ ThisBuild / organization := "com.example"
 ThisBuild / organizationName := "example"
 ThisBuild / useCoursier := false
 
-val circeVersion = "0.14.1"
+val circeVersion = "0.14.2"
 
 lazy val root = (project in file("."))
   .settings(
     name := "total-scala",
     libraryDependencies ++= Seq(
-      "org.scalactic" %% "scalactic" % "3.2.11",
-      "org.scalatest" %% "scalatest" % "3.2.11" % "test"
+      "org.scalactic" %% "scalactic" % "3.2.12",
+      "org.scalatest" %% "scalatest" % "3.2.12" % "test"
     ),
     libraryDependencies ++= Seq(
       "io.circe" %% "circe-core",
