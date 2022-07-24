@@ -11,7 +11,7 @@ lazy val root = (project in file("."))
     name := "total-scala",
     libraryDependencies ++= Seq(
       "org.scalactic" %% "scalactic" % "3.2.12",
-      "org.scalatest" %% "scalatest" % "3.2.12" % "test"
+      "org.scalatest" %% "scalatest" % "3.2.12" % Test
     ),
     libraryDependencies ++= Seq(
       "io.circe" %% "circe-core",
