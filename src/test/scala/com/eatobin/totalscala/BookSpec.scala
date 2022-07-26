@@ -1,4 +1,4 @@
-package total
+package com.eatobin.totalscala
 
 import io.circe.Error
 import org.scalatest.flatspec.AnyFlatSpec

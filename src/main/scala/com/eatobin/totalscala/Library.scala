@@ -1,4 +1,4 @@
-package total
+package com.eatobin.totalscala
 
 import io.circe.generic.auto._
 import io.circe.parser._

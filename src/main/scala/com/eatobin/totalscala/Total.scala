@@ -1,4 +1,4 @@
-package total
+package com.eatobin.totalscala
 
 import java.io.{BufferedWriter, File, FileWriter}
 import scala.io.Source
