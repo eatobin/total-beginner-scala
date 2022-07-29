@@ -1,5 +1,6 @@
 package com.eatobin.totalscala
 
+import com.eatobin.totalscala.Borrower.getName
 import io.circe.Error
 import io.circe.generic.auto._
 import io.circe.parser._
@@ -19,12 +20,12 @@ object Book {
 
   private def availableString(bk: Book): String = {
     getBorrower(bk) match {
-      case Some(br) => s"Checked out to ${Borrower.getName(br)}"
+      case Some(br) => s"Checked out to ${getName(br)}"
       case None => "Available"
     }
   }
 
-  def toString(bk: Book): String =
+  def bookToString(bk: Book): String =
     s"${getTitle(bk)} by ${getAuthor(bk)}; ${availableString(bk)}"
 
   def jsonStringToBook(bookString: String): Either[Error, Book] = decode[Book](bookString)

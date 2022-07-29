@@ -17,7 +17,7 @@ object Borrower {
 
   def setMaxBooks(m: Int, br: Borrower): Borrower = br.copy(maxBooks = m)
 
-  def toString(br: Borrower): String =
+  def borrowerToString(br: Borrower): String =
     s"${getName(br)} (${getMaxBooks(br)} books)"
 
   def jsonStringToBorrower(borrowerString: String): Either[Error, Borrower] =

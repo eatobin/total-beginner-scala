@@ -106,7 +106,7 @@ class LibrarySpec extends AnyFlatSpec {
   }
 
   it should "print out a Status report" in {
-    assert(Library.toString(bks2, brs2) == ss)
+    assert(Library.libraryToString(bks2, brs2) == ss)
   }
 
 }

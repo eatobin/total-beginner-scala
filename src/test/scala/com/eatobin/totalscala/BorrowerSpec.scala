@@ -50,7 +50,7 @@ class BorrowerSpec extends AnyFlatSpec {
   it should "return a string \"Borrower1 (1 books)\"" in {
     br1 match {
       case Left(e) => assert(e.toString == "")
-      case Right(br) => assert(Borrower.toString(br) == "Borrower1 (1 books)")
+      case Right(br) => assert(Borrower.borrowerToString(br) == "Borrower1 (1 books)")
     }
   }
 

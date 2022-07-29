@@ -21,11 +21,11 @@ class BookSpec extends AnyFlatSpec {
   }
 
   it should "return a string \"Title1 by Author1; Available\"" in {
-    assert(Book.toString(bk1) == "Title1 by Author1; Available")
+    assert(Book.bookToString(bk1) == "Title1 by Author1; Available")
   }
 
   it should "return a string \"Title1 by Author1; Checked out to Borrower2\"" in {
-    assert(Book.toString(bk2) == "Title1 by Author1; Checked out to Borrower2")
+    assert(Book.bookToString(bk2) == "Title1 by Author1; Checked out to Borrower2")
   }
 
   it should "convert from JSON" in {

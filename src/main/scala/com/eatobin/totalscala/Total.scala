@@ -22,51 +22,51 @@ object Total {
     books = Library.addItem(Book("War And Peace", "Tolstoy"))
     books = Library.addItem(Book("Great Expectations", "Dickens"))
     println("\nJust created new library")
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
 
     println("Check out War And Peace to Sue")
     books = Library.checkOut("Sue")("War And Peace")(borrowers)(books)
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
 
     println("Now check in War And Peace from Sue...")
     books = Library.checkIn("War And Peace")(books)
     println("...and check out Great Expectations to Jim")
     books = Library.checkOut("Jim")("Great Expectations")(borrowers)(books)
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
 
     println("Add Eric and The Cat In The Hat")
     borrowers = Library.addItem(Borrower("Eric", 1))(borrowers)
     books = Library.addItem(Book("The Cat In The Hat", "Dr. Seuss"))(books)
     println("Check Out Dr. Seuss to Eric")
     books = Library.checkOut("Eric")("The Cat In The Hat")(borrowers)(books)
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
 
     println("Now let's do some BAD stuff...\n")
 
     println("Add a borrower that already exists (total.Borrower('Jim', 3))")
     borrowers = Library.addItem(Borrower("Jim", 3))(borrowers)
     println("No change to Test Library:")
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
 
     println("Add a book that already exists (Book('War And Peace', 'Tolstoy', None))")
     books = Library.addItem(Book("War And Peace", "Tolstoy", None))(books)
     println("No change to Test Library:")
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
 
     println("Check out a valid book to an invalid person (checkOut('JoJo', 'War And Peace', borrowers))")
     books = Library.checkOut("JoJo")("War And Peace")(borrowers)(books)
     println("No change to Test Library:")
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
 
     println("Check out an invalid book to an valid person (checkOut('Sue', 'Not A total.Book', borrowers))")
     books = Library.checkOut("Sue")("Not A total.Book")(borrowers)(books)
     println("No change to Test Library:")
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
 
     println("Last - check in a book not checked out (checkIn('War And Peace'))")
     books = Library.checkIn("War And Peace")(books)
     println("No change to Test Library:")
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
 
     println("Okay... let's finish with some persistence. First clear the whole library:")
     emptyLib()
@@ -75,7 +75,7 @@ object Total {
     newLib(jsonBorrowersFileBefore, jsonBooksFile)
     println("Add... a new borrower:")
     borrowers = Library.addItem(Borrower("BorrowerNew", 300))(borrowers)
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
 
     println("Save the revised borrowers to \"borrowers-after.json\"")
     val jsonBrsStr = Library.borrowersToJsonString(borrowers)
@@ -108,7 +108,7 @@ object Total {
   def emptyLib(): Unit = {
     books = List.empty
     borrowers = List.empty
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
   }
 
 
@@ -149,7 +149,7 @@ object Total {
       case Left(l) =>
         println(l)
     }
-    println(Library.toString(books, borrowers))
+    println(Library.libraryToString(books, borrowers))
   }
 
 }
