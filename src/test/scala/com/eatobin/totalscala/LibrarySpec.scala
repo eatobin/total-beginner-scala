@@ -1,5 +1,7 @@
 package com.eatobin.totalscala
 
+import com.eatobin.totalscala.Book._
+import com.eatobin.totalscala.Borrower._
 import com.eatobin.totalscala.Library._
 import org.scalatest.flatspec.AnyFlatSpec
 
@@ -46,11 +48,11 @@ class LibrarySpec extends AnyFlatSpec {
   }
 
   it should "find a Book or Borrower correctly" in {
-    assert(findItem("Title1")(bks2)(Book.getTitle).contains(bk1))
-    assert(findItem("Title11")(bks2)(Book.getTitle).isEmpty)
+    assert(findItem("Title1")(bks2)(getTitle).contains(bk1))
+    assert(findItem("Title11")(bks2)(getTitle).isEmpty)
 
-    assert(findItem("Borrower1")(brs2)(Borrower.getName).contains(br1))
-    assert(findItem("Borrower11")(brs2)(Borrower.getName).isEmpty)
+    assert(findItem("Borrower1")(brs2)(getName).contains(br1))
+    assert(findItem("Borrower11")(brs2)(getName).isEmpty)
   }
 
   it should "find List[Book] for a Borrower" in {
