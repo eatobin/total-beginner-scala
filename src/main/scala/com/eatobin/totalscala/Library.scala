@@ -30,16 +30,16 @@ object Library {
   def getBooksForBorrower(br: Borrower, bks: List[Book]): List[Book] =
     bks.filter(bk => getBorrower(bk).contains(br))
 
-  def numBooksOut(br: Borrower, bks: List[Book]): Int =
+  private def numBooksOut(br: Borrower, bks: List[Book]): Int =
     getBooksForBorrower(br, bks).length
 
-  def notMaxedOut(br: Borrower, bks: List[Book]): Boolean =
+  private def notMaxedOut(br: Borrower, bks: List[Book]): Boolean =
     numBooksOut(br, bks) < getMaxBooks(br)
 
-  def bookNotOut(bk: Book): Boolean =
+  private def bookNotOut(bk: Book): Boolean =
     Book.getBorrower(bk).isEmpty
 
-  def bookOut(bk: Book): Boolean =
+  private def bookOut(bk: Book): Boolean =
     Book.getBorrower(bk).isDefined
 
   def checkOut(n: String)(t: String)(brs: List[Borrower])(bks: List[Book]): List[Book] = {
