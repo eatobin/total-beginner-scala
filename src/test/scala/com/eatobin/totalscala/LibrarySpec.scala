@@ -53,9 +53,9 @@ class LibrarySpec extends AnyFlatSpec {
   }
 
   it should "find List[Book] for a Borrower" in {
-    assert(Library.getBooksForBorrower(br2)(bks1) == List())
-    assert(Library.getBooksForBorrower(br1)(bks1) == List(bk1))
-    assert(Library.getBooksForBorrower(br3)(bks3) == List(bk3, bk4))
+    assert(Library.getBooksForBorrower(br2, bks1) == List())
+    assert(Library.getBooksForBorrower(br1, bks1) == List(bk1))
+    assert(Library.getBooksForBorrower(br3, bks3) == List(bk3, bk4))
   }
 
   it should "check out a Book correctly" in {

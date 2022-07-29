@@ -25,11 +25,11 @@ object Library {
     result.headOption
   }
 
-  def getBooksForBorrower(br: Borrower)(bks: List[Book]): List[Book] =
+  def getBooksForBorrower(br: Borrower, bks: List[Book]): List[Book] =
     bks.filter(bk => Book.getBorrower(bk).contains(br))
 
   def numBooksOut(br: Borrower)(bks: List[Book]): Int =
-    getBooksForBorrower(br)(bks).length
+    getBooksForBorrower(br, bks).length
 
   def notMaxedOut(br: Borrower)(bks: List[Book]): Boolean =
     numBooksOut(br)(bks) < Borrower.getMaxBooks(br)
