@@ -28,11 +28,11 @@ object Library {
   def getBooksForBorrower(br: Borrower, bks: List[Book]): List[Book] =
     bks.filter(bk => Book.getBorrower(bk).contains(br))
 
-  def numBooksOut(br: Borrower)(bks: List[Book]): Int =
+  def numBooksOut(br: Borrower, bks: List[Book]): Int =
     getBooksForBorrower(br, bks).length
 
-  def notMaxedOut(br: Borrower)(bks: List[Book]): Boolean =
-    numBooksOut(br)(bks) < Borrower.getMaxBooks(br)
+  def notMaxedOut(br: Borrower, bks: List[Book]): Boolean =
+    numBooksOut(br, bks) < Borrower.getMaxBooks(br)
 
   def bookNotOut(bk: Book): Boolean =
     Book.getBorrower(bk).isEmpty
@@ -44,7 +44,7 @@ object Library {
     val mbk = findItem(t)(bks)(Book.getTitle)
     val mbr = findItem(n)(brs)(Borrower.getName)
 
-    if (mbk.isDefined && mbr.isDefined && notMaxedOut(mbr.get)(bks) && bookNotOut(mbk.get)) {
+    if (mbk.isDefined && mbr.isDefined && notMaxedOut(mbr.get, bks) && bookNotOut(mbk.get)) {
       val newBook = Book.setBorrower(mbr, mbk.get)
       val fewerBooks = removeBook(mbk.get)(bks)
       addItem(newBook)(fewerBooks)
@@ -93,12 +93,12 @@ object Library {
   def booksToJsonString(bks: List[Book]): JsonString =
     bks.asJson.noSpaces
 
-  def libraryToString(brs: List[Borrower])(bks: List[Book]): String =
+  def libraryToString(brs: List[Borrower], bks: List[Book]) =
     s"Test Library: ${bks.length.toString} books; ${brs.length.toString} borrowers."
 
   def toString(bks: List[Book], brs: List[Borrower]): String =
     "\n--- Status Report of Test Library ---\n\n" +
-      libraryToString(brs)(bks) + "\n\n" +
+      libraryToString(brs, bks) + "\n\n" +
       bks.map(bk => Book.toString(bk)).mkString("\n") + "\n\n" +
       brs.map(br => Borrower.toString(br)).mkString("\n") + "\n\n" +
       "--- End of Status Report ---\n"
