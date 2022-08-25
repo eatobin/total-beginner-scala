@@ -27,3 +27,10 @@ matcher(myTup)
 
 matcher(myP)
 
+case class Borrower(name: String, maxBooks: Int)
+
+sealed trait Book
+
+case class BookIn(title: String, author: String) extends Book
+
+case class BookOut(bookIn: BookIn, borrower: Borrower) extends Book
