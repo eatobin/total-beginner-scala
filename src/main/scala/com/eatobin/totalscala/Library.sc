@@ -37,13 +37,15 @@ case class Borrower(name: String, maxBooks: Int)
 
 sealed trait Book
 
-case class BookIn(title: String, author: String) extends Book
+object Book {
+  case class BookIn(title: String, author: String) extends Book
 
-case class BookOut(title: String, author: String, borrower: Borrower) extends Book
+  case class BookOut(title: String, author: String, borrower: Borrower) extends Book
+}
 
 val br = Borrower(name = "Borrower2", maxBooks = 2)
-val bk1 = BookIn(title = "Title1", author = "Author1")
-val bk2 = BookOut(title = "Title2", author = "Author2", borrower = br)
+val bk1 = Book.BookIn(title = "Title1", author = "Author1")
+val bk2 = Book.BookOut(title = "Title2", author = "Author2", borrower = br)
 
 println(br)
 println(bk1)
