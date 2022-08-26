@@ -1,12 +1,16 @@
 sealed trait IntOrBool
+
 object IntOrBool {
   case class I(i: Int) extends IntOrBool
+
   case class B(b: Boolean) extends IntOrBool
 }
 
-val i = I(99)
+val i = IntOrBool.I(99)
+println(i)
 
-val b = B(true)
+val b = IntOrBool.B(true)
+println(b)
 
 sealed trait MixedType
 
