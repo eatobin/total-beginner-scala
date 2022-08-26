@@ -1,8 +1,8 @@
 sealed trait IntOrBool
-
-case class I(i: Int) extends IntOrBool
-
-case class B(b: Boolean) extends IntOrBool
+object IntOrBool {
+  case class I(i: Int) extends IntOrBool
+  case class B(b: Boolean) extends IntOrBool
+}
 
 val i = I(99)
 
