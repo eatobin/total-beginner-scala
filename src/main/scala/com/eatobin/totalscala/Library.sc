@@ -14,17 +14,19 @@ println(b)
 
 sealed trait MixedType
 
-case class Tup(x: Int, y: Int) extends MixedType
+object MixedType {
+  case class Tup(x: Int, y: Int) extends MixedType
 
-case class Person(first: String, last: String) extends MixedType
+  case class Person(first: String, last: String) extends MixedType
+}
 
-val myTup = Tup(2, 99)
+val myTup = MixedType.Tup(2, 99)
 
-val myP = Person(first = "Al", last = "Jones")
+val myP = MixedType.Person(first = "Al", last = "Jones")
 
 def matcher(x: MixedType): Unit = x match {
-  case Tup(x, y) => println(s"Tuple matched with $x $y")
-  case Person(f, l) => println(s"Person matched with $f $l")
+  case MixedType.Tup(x, y) => println(s"Tuple matched with $x $y")
+  case MixedType.Person(f, l) => println(s"Person matched with $f $l")
 }
 
 matcher(myTup)
