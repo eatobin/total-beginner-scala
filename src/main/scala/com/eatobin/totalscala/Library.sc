@@ -1,3 +1,5 @@
+//[eric@linux-x2vq total-scala](ddd)$ amm src/main/scala/com/eatobin/totalscala/Library.sc
+
 sealed trait IntOrBool
 
 object IntOrBool {
