@@ -1,0 +1,122 @@
+[eric@linux-x2vq total-scala](master)$ amm
+Loading...
+Welcome to the Ammonite Repl 2.5.4 (Scala 2.13.8 Java 17.0.4.1)
+@ import $ivy.`io.circe::circe-core:0.14.2`
+import $ivy.$
+
+@ import $ivy.`io.circe::circe-generic:0.14.2`
+import $ivy.$
+
+@ import $ivy.`io.circe::circe-parser:0.14.2`
+import $ivy.$
+
+@ import io.circe.generic.auto._, io.circe.syntax._
+import io.circe.generic.auto._, io.circe.syntax._
+
+@ case class Person(name: String)
+defined class Person
+
+@ case class Greeting(salutation: String, person: Person, exclamationMarks: Int)
+defined class Greeting
+
+@ Greeting("Hey", Person("Chris"), 3).asJson
+res6: io.circe.Json = JObject(
+  value = object[salutation -> "Hey",person -> {
+  "name" : "Chris"
+},exclamationMarks -> 3]
+)
+
+@ import io.circe._, io.circe.parser._
+import io.circe._, io.circe.parser._
+
+@ res6.
+:=                   asBoolean            asObject             dropEmptyValues      hcursor              isObject             mapObject            printWith            productIterator      spaces4SortKeys      withObject
+\\                   asJson               asString             dropNullValues       isArray              isString             mapString            productArity         productPrefix        withArray            withString
+arrayOrObject        asJsonObject         canEqual             findAllByKey         isBoolean            mapArray             name                 productElement       spaces2              withBoolean
+as                   asNull               deepDropNullValues   fold                 isNull               mapBoolean           noSpaces             productElementName   spaces2SortKeys      withNull
+asArray              asNumber             deepMerge            foldWith             isNumber             mapNumber            noSpacesSortKeys     productElementNames  spaces4              withNumber
+@ res6.as[Greeting]
+res8: Decoder.Result[Greeting] = Right(value = Greeting(salutation = "Hey", person = Person(name = "Chris"), exclamationMarks = 3))
+
+@ res6
+res9: Json = JObject(
+  value = object[salutation -> "Hey",person -> {
+  "name" : "Chris"
+},exclamationMarks -> 3]
+)
+
+@ import cats.syntax.either._
+import cats.syntax.either._
+
+@ import io.circe._, io.circe.parser._
+import io.circe._, io.circe.parser._
+
+@ val json: String = """
+    {
+      "id": "c730433b-082c-4984-9d66-855c243266f0",
+      "name": "Foo",
+      "counts": [1, 2, 3],
+      "values": {
+        "bar": true,
+        "baz": 100.001,
+        "qux": ["a", "b"]
+      }
+    }
+  """
+json: String = """
+  {
+    "id": "c730433b-082c-4984-9d66-855c243266f0",
+    "name": "Foo",
+    "counts": [1, 2, 3],
+    "values": {
+      "bar": true,
+      "baz": 100.001,
+      "qux": ["a", "b"]
+    }
+...
+
+@ val doc: Json = parse(json).getOrElse(Json.Null)
+doc: Json = JObject(
+  value = object[id -> "c730433b-082c-4984-9d66-855c243266f0",name -> "Foo",counts -> [
+  1,
+  2,
+  3
+],values -> {
+  "bar" : true,
+  "baz" : 100.001,
+  "qux" : [
+    "a",
+...
+
+@ val jsonStringBr: JsonString = "{\"name\":\"Borrower1\",\"maxBooks\":1}"
+cmd14.sc:1: not found: type JsonString
+val jsonStringBr: JsonString = "{\"name\":\"Borrower1\",\"maxBooks\":1}"
+                  ^
+Compilation Failed
+
+@ type JsonString = String
+defined type JsonString
+
+@ val jsonStringBr: JsonString = "{\"name\":\"Borrower1\",\"maxBooks\":1}"
+jsonStringBr: JsonString = "{\"name\":\"Borrower1\",\"maxBooks\":1}"
+
+@ val doc: Json = parse(jsonStringBr).getOrElse(Json.Null)
+doc: Json = JObject(value = object[name -> "Borrower1",maxBooks -> 1])
+
+@ doc
+res17: Json = JObject(value = object[name -> "Borrower1",maxBooks -> 1])
+
+@ doc.as[Borrower]
+cmd18.sc:1: not found: type Borrower
+val res18 = doc.as[Borrower]
+                   ^
+Compilation Failed
+
+@ case class Borrower(name: String, maxBooks: Int)
+defined class Borrower
+
+@ doc.as[Borrower]
+res19: Decoder.Result[Borrower] = Right(value = Borrower(name = "Borrower1", maxBooks = 1))
+
+@
+
