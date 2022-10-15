@@ -1,15 +1,3 @@
-//amm
-// @ import $ivy.`io.circe::circe-core:0.14.2`
-//import $ivy.$
-//
-//@ import $ivy.`io.circe::circe-generic:0.14.2`
-//import $ivy.$
-//
-//@ import $ivy.`io.circe::circe-parser:0.14.2`
-//import $ivy.$
-//
-//@
-
 ThisBuild / scalaVersion := "2.13.10"
 ThisBuild / version := "0.1.0-SNAPSHOT"
 ThisBuild / organization := "com.eatobin"
